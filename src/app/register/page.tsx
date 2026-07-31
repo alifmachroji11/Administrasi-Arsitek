@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -71,6 +72,8 @@ export default function RegisterPage() {
               {loading ? "Memproses…" : "Daftar"}
             </button>
           </form>
+
+          <GoogleSignInButton callbackUrl="/projects" />
         </div>
 
         <p className="mt-5 text-center text-[13.5px]" style={{ color: "var(--color-ink-soft)" }}>

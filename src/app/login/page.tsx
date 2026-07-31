@@ -4,6 +4,7 @@ import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 
 function LoginForm() {
   const router = useRouter();
@@ -57,13 +58,7 @@ function LoginForm() {
             </button>
           </form>
 
-          <button
-            onClick={() => signIn("google", { callbackUrl: "/projects" })}
-            className="mt-3 w-full rounded-xl border py-3 text-[14px] font-medium"
-            style={{ borderColor: "var(--color-stone-line)", color: "var(--color-ink)" }}
-          >
-            Masuk dengan Google
-          </button>
+          <GoogleSignInButton callbackUrl="/projects" />
         </div>
 
         <p className="mt-5 text-center text-[13.5px]" style={{ color: "var(--color-ink-soft)" }}>

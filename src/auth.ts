@@ -43,6 +43,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   providers,
   session: { strategy: "jwt" },
   pages: { signIn: "/login" },
+  // Vercel/serverless hosts don't always match AUTH_URL exactly (preview
+  // deployments, custom domains) — trust the incoming request's host so
+  // Google's redirect_uri lines up without hardcoding a URL per env.
+  trustHost: true,
   callbacks: {
     async jwt({ token, user }) {
       if (user?.id) token.uid = user.id;
