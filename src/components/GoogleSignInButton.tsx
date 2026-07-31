@@ -1,29 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { getProviders, signIn } from "next-auth/react";
+import { signIn } from "next-auth/react";
 
 /**
- * Only renders once NextAuth actually has a "google" provider registered
- * (i.e. GOOGLE_CLIENT_ID/SECRET are set server-side) — clicking a Google
- * button that isn't configured lands on NextAuth's generic error page,
- * which is a confusing dead end for a first-time user.
+ * Purely presentational — the caller decides whether Google is configured
+ * (checked server-side, see src/app/login/page.tsx and
+ * src/app/register/page.tsx) and only renders this when it is. Previously
+ * this component self-detected availability via a client-side fetch to
+ * /api/auth/providers, which added a race/failure mode with no visible
+ * error if it didn't resolve in time — the server-side check removes that
+ * whole class of bug.
  */
 export function GoogleSignInButton({ callbackUrl = "/projects" }: { callbackUrl?: string }) {
-  const [available, setAvailable] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    getProviders().then((providers) => {
-      if (!cancelled) setAvailable(Boolean(providers?.google));
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  if (!available) return null;
-
   return (
     <>
       <div className="my-4 flex items-center gap-3">
