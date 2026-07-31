@@ -1,3 +1,5 @@
+"use client";
+
 interface ToastProps {
   message: string | null;
 }

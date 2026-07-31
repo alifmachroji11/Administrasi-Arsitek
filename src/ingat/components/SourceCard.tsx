@@ -1,3 +1,5 @@
+"use client";
+
 import type { Source } from "../lib/types";
 import { PhotoPlate } from "../../components/PhotoPlate";
 

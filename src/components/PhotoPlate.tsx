@@ -1,3 +1,5 @@
+"use client";
+
 interface PhotoPlateProps {
   label: string;
   tone?: number;

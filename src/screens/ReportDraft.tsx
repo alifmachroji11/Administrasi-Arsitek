@@ -1,3 +1,5 @@
+"use client";
+
 import type { ReportItem } from "../lib/types";
 import { PhotoPlate } from "../components/PhotoPlate";
 import { BackButton } from "../components/BackButton";

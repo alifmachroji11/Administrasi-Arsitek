@@ -1,5 +1,6 @@
+"use client";
+
 import { SearchBar } from "../components/SearchBar";
-import { PROJECT_CHIPS } from "../data/searchIndex";
 
 interface IngatHomeProps {
   query: string;
@@ -10,6 +11,7 @@ interface IngatHomeProps {
   onRecentClick: (q: string) => void;
   projectFilter: string | null;
   onToggleProjectFilter: (p: string) => void;
+  projectChips: string[];
 }
 
 export function IngatHome({
@@ -21,6 +23,7 @@ export function IngatHome({
   onRecentClick,
   projectFilter,
   onToggleProjectFilter,
+  projectChips,
 }: IngatHomeProps) {
   return (
     <div className="mx-auto flex w-full max-w-[560px] flex-1 flex-col px-6 pt-10 pb-8">
@@ -69,12 +72,13 @@ export function IngatHome({
         </div>
       )}
 
+      {projectChips.length > 0 && (
       <div className="mt-8">
         <p className="mb-3 text-[11.5px] font-semibold uppercase" style={{ color: "var(--color-ink-faint)", letterSpacing: "0.06em" }}>
           Proyek yang Terhubung
         </p>
         <div className="flex flex-wrap gap-2">
-          {PROJECT_CHIPS.map((p) => {
+          {projectChips.map((p) => {
             const active = projectFilter === p;
             return (
               <button
@@ -93,6 +97,7 @@ export function IngatHome({
           })}
         </div>
       </div>
+      )}
 
       <div className="flex-[2]" />
     </div>

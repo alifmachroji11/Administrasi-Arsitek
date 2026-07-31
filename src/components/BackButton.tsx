@@ -1,3 +1,5 @@
+"use client";
+
 export function BackButton({ onClick, label = "Kembali" }: { onClick: () => void; label?: string }) {
   return (
     <button

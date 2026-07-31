@@ -1,3 +1,5 @@
+"use client";
+
 interface TagChipProps {
   label: string;
   fg: string;

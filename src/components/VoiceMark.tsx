@@ -1,3 +1,5 @@
+"use client";
+
 const BARS = [6, 13, 9, 15, 7, 11];
 
 export function VoiceMark() {

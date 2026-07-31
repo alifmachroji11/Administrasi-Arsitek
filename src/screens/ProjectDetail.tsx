@@ -1,3 +1,5 @@
+"use client";
+
 import type { Project, ReportRange, Tag } from "../lib/types";
 import { TAG_LIST, TAG_META } from "../lib/tags";
 import { TagChip } from "../components/TagChip";
