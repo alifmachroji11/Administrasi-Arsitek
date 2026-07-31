@@ -94,7 +94,7 @@ export function ProfilContent() {
       <ConnectedSources />
 
       <button
-        onClick={() => signOut({ callbackUrl: "/login" })}
+        onClick={() => signOut({ callbackUrl: "/" })}
         className="mt-6 w-full rounded-xl border py-3 text-[14px] font-medium"
         style={{ borderColor: "var(--color-stone-line)", color: "var(--color-accent)" }}
       >
