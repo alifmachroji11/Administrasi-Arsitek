@@ -1,7 +1,7 @@
-import { redirect } from "next/navigation";
-import { auth } from "@/auth";
+import { LandingPage } from "./LandingPage";
 
-export default async function RootPage() {
-  const session = await auth();
-  redirect(session?.user ? "/projects" : "/login");
+// Public marketing page — authenticated visitors are redirected to
+// /projects by src/proxy.ts before this ever renders for them.
+export default function RootPage() {
+  return <LandingPage />;
 }

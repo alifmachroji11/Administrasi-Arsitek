@@ -5,7 +5,10 @@ const PUBLIC_PATHS = ["/login", "/register"];
 
 export default auth((req) => {
   const { pathname } = req.nextUrl;
-  const isPublic = PUBLIC_PATHS.some((p) => pathname.startsWith(p)) || pathname.startsWith("/api/auth");
+  // "/" is the public marketing landing page — matched exactly, not as a
+  // prefix (every path "starts with" "/", which would make everything
+  // public if checked the same way as the other entries below).
+  const isPublic = pathname === "/" || PUBLIC_PATHS.some((p) => pathname.startsWith(p)) || pathname.startsWith("/api/auth");
 
   if (!req.auth && !isPublic) {
     const loginUrl = new URL("/login", req.nextUrl.origin);
