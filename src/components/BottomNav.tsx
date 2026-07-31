@@ -1,6 +1,10 @@
+export type NavSection = "proyek" | "cari" | "profil";
+
 interface BottomNavProps {
-  onSearch: () => void;
-  onProfile: () => void;
+  active: NavSection;
+  onProyek: () => void;
+  onCari: () => void;
+  onProfil: () => void;
 }
 
 function NavIcon({ children, active }: { children: React.ReactNode; active?: boolean }) {
@@ -14,45 +18,47 @@ function NavIcon({ children, active }: { children: React.ReactNode; active?: boo
   );
 }
 
-export function BottomNav({ onSearch, onProfile }: BottomNavProps) {
+function NavLabel({ children, active }: { children: React.ReactNode; active?: boolean }) {
+  return (
+    <span className={`text-[10.5px] ${active ? "font-semibold" : "font-medium"}`} style={{ color: active ? "var(--color-accent)" : "var(--color-ink-faint)" }}>
+      {children}
+    </span>
+  );
+}
+
+export function BottomNav({ active, onProyek, onCari, onProfil }: BottomNavProps) {
   return (
     <nav
       className="flex items-center justify-around border-t bg-[var(--color-card)] py-2.5"
       style={{ borderColor: "var(--color-stone-line)" }}
       aria-label="Navigasi utama"
     >
-      <button className="flex flex-col items-center gap-1 px-6 py-1" aria-current="page">
-        <NavIcon active>
+      <button onClick={onProyek} className="flex flex-col items-center gap-1 px-6 py-1" aria-current={active === "proyek" ? "page" : undefined}>
+        <NavIcon active={active === "proyek"}>
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
             <path d="M4 11.5 12 4l8 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
             <path d="M6 10v9a1 1 0 0 0 1 1h4v-6h2v6h4a1 1 0 0 0 1-1v-9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </NavIcon>
-        <span className="text-[10.5px] font-semibold" style={{ color: "var(--color-accent)" }}>
-          Proyek
-        </span>
+        <NavLabel active={active === "proyek"}>Proyek</NavLabel>
       </button>
-      <button onClick={onSearch} className="flex flex-col items-center gap-1 px-6 py-1">
-        <NavIcon>
+      <button onClick={onCari} className="flex flex-col items-center gap-1 px-6 py-1" aria-current={active === "cari" ? "page" : undefined}>
+        <NavIcon active={active === "cari"}>
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
             <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
             <path d="m20 20-3.2-3.2" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </NavIcon>
-        <span className="text-[10.5px] font-medium" style={{ color: "var(--color-ink-faint)" }}>
-          Cari
-        </span>
+        <NavLabel active={active === "cari"}>Cari</NavLabel>
       </button>
-      <button onClick={onProfile} className="flex flex-col items-center gap-1 px-6 py-1">
-        <NavIcon>
+      <button onClick={onProfil} className="flex flex-col items-center gap-1 px-6 py-1" aria-current={active === "profil" ? "page" : undefined}>
+        <NavIcon active={active === "profil"}>
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="8" r="3.4" stroke="currentColor" strokeWidth="2" />
             <path d="M5 20c1.3-3.6 4-5.4 7-5.4s5.7 1.8 7 5.4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
           </svg>
         </NavIcon>
-        <span className="text-[10.5px] font-medium" style={{ color: "var(--color-ink-faint)" }}>
-          Profil
-        </span>
+        <NavLabel active={active === "profil"}>Profil</NavLabel>
       </button>
     </nav>
   );

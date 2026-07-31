@@ -5,12 +5,15 @@ import { Home } from "./screens/Home";
 import { ProjectDetail } from "./screens/ProjectDetail";
 import { ReportDraft } from "./screens/ReportDraft";
 import { Onboarding } from "./screens/Onboarding";
-import { BottomNav } from "./components/BottomNav";
+import { ProfilPlaceholder } from "./screens/ProfilPlaceholder";
+import { BottomNav, type NavSection } from "./components/BottomNav";
 import { Toast } from "./components/Toast";
+import { IngatShell } from "./ingat/IngatShell";
 
 const DESKTOP_BREAKPOINT = 900;
 
 export default function App() {
+  const [section, setSection] = useState<NavSection>("proyek");
   const [screen, setScreen] = useState<Screen>("beranda");
   const [projects, setProjects] = useState<Project[]>([]);
   const [nextSeedIndex, setNextSeedIndex] = useState(0);
@@ -91,19 +94,26 @@ export default function App() {
     setReportItems((prev) => prev.map((it) => (it.id === id ? { ...it, caption: value } : it)));
   };
 
-  const showMain = screen === "beranda" || screen === "detail";
+  const goProyek = () => {
+    if (section === "proyek") setScreen("beranda");
+    setSection("proyek");
+  };
+  const goCari = () => setSection("cari");
+  const goProfil = () => setSection("profil");
+
+  const showMain = section === "proyek" && (screen === "beranda" || screen === "detail");
   const showListPane = isDesktop || screen === "beranda";
   const showDetailPane = isDesktop || screen === "detail";
 
   return (
     <div className="h-dvh overflow-hidden" style={{ background: "var(--color-paper)" }}>
-      {screen === "onboarding" && (
+      {section === "proyek" && screen === "onboarding" && (
         <div className="h-full overflow-y-auto">
           <Onboarding onClose={closeOnboarding} onFinish={finishOnboarding} />
         </div>
       )}
 
-      {screen === "laporan" && (
+      {section === "proyek" && screen === "laporan" && (
         <div className="h-full overflow-y-auto">
           <ReportDraft
             title={reportTitle}
@@ -142,7 +152,7 @@ export default function App() {
                   onConnect={openOnboarding}
                 />
               </div>
-              <BottomNav onSearch={() => flashToast("Segera hadir")} onProfile={() => flashToast("Segera hadir")} />
+              <BottomNav active="proyek" onProyek={goProyek} onCari={goCari} onProfil={goProfil} />
             </div>
           )}
 
@@ -161,6 +171,22 @@ export default function App() {
               />
             </div>
           )}
+        </div>
+      )}
+
+      {section === "cari" && (
+        <div className="flex h-full flex-col">
+          <div className="min-h-0 flex-1">
+            <IngatShell />
+          </div>
+          <BottomNav active="cari" onProyek={goProyek} onCari={goCari} onProfil={goProfil} />
+        </div>
+      )}
+
+      {section === "profil" && (
+        <div className="flex h-full flex-col">
+          <ProfilPlaceholder />
+          <BottomNav active="profil" onProyek={goProyek} onCari={goCari} onProfil={goProfil} />
         </div>
       )}
 
