@@ -68,7 +68,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ id: st
   };
 
   return (
-    <div className="flex h-dvh flex-col overflow-hidden" style={{ background: "var(--color-paper-dim)" }}>
+    <div className="page-transition flex h-dvh flex-col overflow-hidden" style={{ background: "var(--color-paper-dim)" }}>
       <div className="min-h-0 flex-1">
         <ProjectDetail
           project={project ?? null}

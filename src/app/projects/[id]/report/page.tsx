@@ -71,7 +71,7 @@ function ReportPageInner() {
   };
 
   return (
-    <div className="h-dvh overflow-y-auto" style={{ background: "var(--color-paper)" }}>
+    <div className="page-transition h-dvh overflow-y-auto" style={{ background: "var(--color-paper)" }}>
       <ReportDraft
         title={title}
         rangeLabel={rangeLabel}
