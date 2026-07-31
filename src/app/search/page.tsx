@@ -7,8 +7,9 @@ import { SearchBar } from "@/ingat/components/SearchBar";
 import { IngatHome } from "@/ingat/screens/IngatHome";
 import { IngatResults } from "@/ingat/screens/IngatResults";
 import { IngatSourceDetail } from "@/ingat/screens/IngatSourceDetail";
-import { IngatSettings } from "@/ingat/screens/IngatSettings";
-import type { IngatScreen, Source } from "@/ingat/lib/types";
+import type { Source } from "@/ingat/lib/types";
+
+type SearchScreen = "home" | "results" | "detail";
 
 const EXAMPLE_QUERIES = [
   'Coba tanya: "keramik apa yang dipakai di ruang tamu?"',
@@ -19,7 +20,7 @@ const EXAMPLE_QUERIES = [
 
 export default function SearchPage() {
   const router = useRouter();
-  const [screen, setScreen] = useState<IngatScreen>("home");
+  const [screen, setScreen] = useState<SearchScreen>("home");
   const [query, setQuery] = useState("");
   const [submittedQuery, setSubmittedQuery] = useState("");
   const [projectFilter, setProjectFilter] = useState<string | null>(null);
@@ -82,7 +83,7 @@ export default function SearchPage() {
         onSubmit={() => runQuery(query)}
         onBack={() => (screen === "detail" ? setScreen("results") : goHome())}
         onGoHome={goHome}
-        onGoSettings={() => setScreen("settings")}
+        onGoSettings={() => router.push("/profil")}
       />
 
       <div className="min-h-0 flex-1 overflow-y-auto">
@@ -110,8 +111,6 @@ export default function SearchPage() {
           ))}
 
         {screen === "detail" && selectedSource && <IngatSourceDetail source={selectedSource} />}
-
-        {screen === "settings" && <IngatSettings />}
       </div>
 
       <BottomNav
@@ -125,7 +124,7 @@ export default function SearchPage() {
 }
 
 interface IngatHeaderProps {
-  screen: IngatScreen;
+  screen: SearchScreen;
   query: string;
   onQueryChange: (v: string) => void;
   onSubmit: () => void;

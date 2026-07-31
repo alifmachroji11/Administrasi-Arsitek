@@ -22,15 +22,3 @@ export interface Source {
   fileType?: string;
   fileSize?: string;
 }
-
-export type ConnectedSourceKind = "whatsapp" | "drive" | "gallery";
-
-export interface ConnectedSource {
-  kind: ConnectedSourceKind;
-  name: string;
-  description: string;
-  connected: boolean;
-  lastSync: string;
-}
-
-export type IngatScreen = "home" | "results" | "detail" | "settings";
