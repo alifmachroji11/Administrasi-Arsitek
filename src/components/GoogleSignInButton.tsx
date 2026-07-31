@@ -1,0 +1,66 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { getProviders, signIn } from "next-auth/react";
+
+/**
+ * Only renders once NextAuth actually has a "google" provider registered
+ * (i.e. GOOGLE_CLIENT_ID/SECRET are set server-side) — clicking a Google
+ * button that isn't configured lands on NextAuth's generic error page,
+ * which is a confusing dead end for a first-time user.
+ */
+export function GoogleSignInButton({ callbackUrl = "/projects" }: { callbackUrl?: string }) {
+  const [available, setAvailable] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    getProviders().then((providers) => {
+      if (!cancelled) setAvailable(Boolean(providers?.google));
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (!available) return null;
+
+  return (
+    <>
+      <div className="my-4 flex items-center gap-3">
+        <span className="h-px flex-1" style={{ background: "var(--color-stone-line)" }} />
+        <span className="text-[11.5px] font-medium" style={{ color: "var(--color-ink-faint)" }}>
+          atau
+        </span>
+        <span className="h-px flex-1" style={{ background: "var(--color-stone-line)" }} />
+      </div>
+      <button
+        onClick={() => signIn("google", { callbackUrl })}
+        className="flex w-full items-center justify-center gap-2.5 rounded-xl border py-3 text-[14px] font-medium"
+        style={{ borderColor: "var(--color-stone-line)", color: "var(--color-ink)" }}
+      >
+        <GoogleMark />
+        Lanjutkan dengan Google
+      </button>
+    </>
+  );
+}
+
+function GoogleMark() {
+  return (
+    <svg width="17" height="17" viewBox="0 0 18 18" aria-hidden>
+      <path
+        fill="#4285F4"
+        d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.57 2.7-3.87 2.7-6.62Z"
+      />
+      <path
+        fill="#34A853"
+        d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.84.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.9v2.33A9 9 0 0 0 9 18Z"
+      />
+      <path fill="#FBBC05" d="M3.95 10.7A5.4 5.4 0 0 1 3.67 9c0-.59.1-1.17.28-1.7V4.97H.9A9 9 0 0 0 0 9c0 1.45.35 2.83.9 4.03l3.05-2.33Z" />
+      <path
+        fill="#EA4335"
+        d="M9 3.58c1.32 0 2.51.46 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .9 4.97l3.05 2.33C4.66 5.17 6.65 3.58 9 3.58Z"
+      />
+    </svg>
+  );
+}

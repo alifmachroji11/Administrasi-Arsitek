@@ -58,6 +58,19 @@ yang dibutuhkan untuk pindah dari mock ke nyata.
 | Database | `src/server/db.ts`, `src/server/mock-repository.ts` | In-memory, reset tiap restart | `DATABASE_URL` — **belum diimplementasikan**, lihat catatan di bawah |
 | WhatsApp | `src/server/whatsapp.ts` | Log ke console, OTP dikembalikan ke UI | `WHATSAPP_ACCESS_TOKEN` + `WHATSAPP_PHONE_NUMBER_ID` — panggilan Cloud API nyata, **belum pernah diuji ke WABA sungguhan** |
 | AI | `src/server/ai.ts` | Heuristik kata kunci | `ANTHROPIC_API_KEY` + `ANTHROPIC_MODEL` — panggilan Messages API langsung, **belum pernah diuji dengan API key sungguhan** |
+| Login Google | `src/auth.ts`, `src/components/GoogleSignInButton.tsx` | Tombol Google disembunyikan otomatis | `GOOGLE_CLIENT_ID` + `GOOGLE_CLIENT_SECRET` — lihat langkah setup di `.env.example` |
+
+### Mengaktifkan login Google
+
+1. Buat OAuth client di [Google Cloud Console](https://console.cloud.google.com)
+   (langkah detail ada sebagai komentar di `.env.example`).
+2. Redirect URI wajib persis `<origin>/api/auth/callback/google` — untuk
+   Vercel berarti `https://<domain-kamu>/api/auth/callback/google`.
+3. Isi `GOOGLE_CLIENT_ID` dan `GOOGLE_CLIENT_SECRET` di `.env.local` untuk
+   lokal, dan di Vercel Project Settings → Environment Variables untuk
+   production, lalu redeploy.
+4. Tombol "Lanjutkan dengan Google" otomatis muncul di halaman Masuk dan
+   Daftar begitu kedua env var itu terisi — tidak perlu ubah kode apa pun.
 
 ### Menghubungkan database nyata
 
