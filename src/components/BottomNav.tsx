@@ -12,8 +12,8 @@ interface BottomNavProps {
 function NavIcon({ children, active }: { children: React.ReactNode; active?: boolean }) {
   return (
     <div
-      className="flex h-6 w-6 items-center justify-center"
-      style={{ color: active ? "var(--color-accent)" : "var(--color-ink-faint)" }}
+      className="flex h-6 w-6 items-center justify-center transition-[color,transform] duration-200 ease-out"
+      style={{ color: active ? "var(--color-accent)" : "var(--color-ink-faint)", transform: active ? "scale(1.08)" : "scale(1)" }}
     >
       {children}
     </div>
@@ -22,11 +22,16 @@ function NavIcon({ children, active }: { children: React.ReactNode; active?: boo
 
 function NavLabel({ children, active }: { children: React.ReactNode; active?: boolean }) {
   return (
-    <span className={`text-[10.5px] ${active ? "font-semibold" : "font-medium"}`} style={{ color: active ? "var(--color-accent)" : "var(--color-ink-faint)" }}>
+    <span
+      className={`text-[10.5px] transition-colors duration-200 ${active ? "font-semibold" : "font-medium"}`}
+      style={{ color: active ? "var(--color-accent)" : "var(--color-ink-faint)" }}
+    >
       {children}
     </span>
   );
 }
+
+const navButtonClass = "flex flex-col items-center gap-1 px-6 py-1 transition-transform duration-150 ease-out active:scale-90";
 
 export function BottomNav({ active, onProyek, onCari, onProfil }: BottomNavProps) {
   return (
@@ -35,7 +40,7 @@ export function BottomNav({ active, onProyek, onCari, onProfil }: BottomNavProps
       style={{ borderColor: "var(--color-stone-line)" }}
       aria-label="Navigasi utama"
     >
-      <button onClick={onProyek} className="flex flex-col items-center gap-1 px-6 py-1" aria-current={active === "proyek" ? "page" : undefined}>
+      <button onClick={onProyek} className={navButtonClass} aria-current={active === "proyek" ? "page" : undefined}>
         <NavIcon active={active === "proyek"}>
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
             <path d="M4 11.5 12 4l8 7.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
@@ -44,7 +49,7 @@ export function BottomNav({ active, onProyek, onCari, onProfil }: BottomNavProps
         </NavIcon>
         <NavLabel active={active === "proyek"}>Proyek</NavLabel>
       </button>
-      <button onClick={onCari} className="flex flex-col items-center gap-1 px-6 py-1" aria-current={active === "cari" ? "page" : undefined}>
+      <button onClick={onCari} className={navButtonClass} aria-current={active === "cari" ? "page" : undefined}>
         <NavIcon active={active === "cari"}>
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
             <circle cx="11" cy="11" r="7" stroke="currentColor" strokeWidth="2" />
@@ -53,7 +58,7 @@ export function BottomNav({ active, onProyek, onCari, onProfil }: BottomNavProps
         </NavIcon>
         <NavLabel active={active === "cari"}>Cari</NavLabel>
       </button>
-      <button onClick={onProfil} className="flex flex-col items-center gap-1 px-6 py-1" aria-current={active === "profil" ? "page" : undefined}>
+      <button onClick={onProfil} className={navButtonClass} aria-current={active === "profil" ? "page" : undefined}>
         <NavIcon active={active === "profil"}>
           <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
             <circle cx="12" cy="8" r="3.4" stroke="currentColor" strokeWidth="2" />
