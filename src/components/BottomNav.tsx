@@ -1,3 +1,5 @@
+"use client";
+
 export type NavSection = "proyek" | "cari" | "profil";
 
 interface BottomNavProps {

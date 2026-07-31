@@ -1,0 +1,105 @@
+// Prisma schema — mirrors src/server/types.ts and Bagian 7 of the product
+// brief. NOT wired up yet: src/server/db.ts always returns the in-memory
+// mock repository. To go live:
+//   1. Set DATABASE_URL (a Supabase Postgres connection string works well).
+//   2. `npx prisma migrate dev`
+//   3. Implement PrismaRepository against src/server/repository.ts's
+//      interface (same shape as MockRepository in mock-repository.ts —
+//      that file is the reference for what each method needs to do) and
+//      return it from getRepository() when DATABASE_URL is set.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                     String   @id @default(cuid())
+  email                  String   @unique
+  passwordHash           String?
+  name                   String
+  whatsappVerifiedNumber String?  @unique
+  createdAt              DateTime @default(now())
+
+  projects Project[]
+  otps     OtpVerification[]
+
+  @@map("users")
+}
+
+model Project {
+  id        String   @id @default(cuid())
+  userId    String
+  name      String
+  client    String
+  status    String   @default("active") // "active" | "archived"
+  createdAt DateTime @default(now())
+
+  user     User                   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  groups   ProjectWhatsappGroup[]
+  captures Capture[]
+  reports  Report[]
+
+  @@map("projects")
+}
+
+model ProjectWhatsappGroup {
+  id        String @id @default(cuid())
+  projectId String
+  waGroupId String @unique
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("project_whatsapp_groups")
+}
+
+model Capture {
+  id          String    @id @default(cuid())
+  projectId   String
+  kind        String // "photo" | "voice" | "text"
+  mediaUrl    String?
+  mediaLabel  String?
+  mediaTone   Int?
+  text        String
+  tag         String // CaptureTag
+  source      String // "dm" | "group"
+  waMessageId String?   @unique
+  seenAt      DateTime?
+  createdAt   DateTime  @default(now())
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("captures")
+}
+
+model Report {
+  id        String    @id @default(cuid())
+  projectId String
+  title     String
+  summary   String
+  range     String // "week" | "all"
+  items     Json // ReportItem[]
+  createdAt DateTime  @default(now())
+  sharedAt  DateTime?
+
+  project Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@map("reports")
+}
+
+model OtpVerification {
+  id          String    @id @default(cuid())
+  userId      String
+  phoneNumber String
+  codeHash    String
+  expiresAt   DateTime
+  verifiedAt  DateTime?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("otp_verifications")
+}

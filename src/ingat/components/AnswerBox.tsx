@@ -1,3 +1,5 @@
+"use client";
+
 interface AnswerBoxProps {
   answer: string;
   sourceCount: number;

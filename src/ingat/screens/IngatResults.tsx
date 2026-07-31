@@ -1,17 +1,19 @@
-import type { SearchEntry } from "../lib/types";
-import { sourceById } from "../data/sources";
+"use client";
+
+import type { Source } from "../lib/types";
 import { AnswerBox } from "../components/AnswerBox";
 import { SourceCard } from "../components/SourceCard";
 
 interface IngatResultsProps {
   query: string;
-  entry: SearchEntry | null;
+  answer: string | null;
+  sources: Source[];
   onOpenSource: (id: string) => void;
   onBroaden: () => void;
 }
 
-export function IngatResults({ query, entry, onOpenSource, onBroaden }: IngatResultsProps) {
-  if (!entry) {
+export function IngatResults({ query, answer, sources, onOpenSource, onBroaden }: IngatResultsProps) {
+  if (!answer) {
     return (
       <div className="mx-auto flex w-full max-w-[560px] flex-1 flex-col items-center px-6 py-16 text-center">
         <div
@@ -41,8 +43,6 @@ export function IngatResults({ query, entry, onOpenSource, onBroaden }: IngatRes
     );
   }
 
-  const sources = entry.sourceIds.map(sourceById).filter((s): s is NonNullable<typeof s> => Boolean(s));
-
   return (
     <div className="mx-auto flex w-full max-w-[900px] flex-1 flex-col px-5 py-6 md:px-8">
       <p className="mb-3 text-[13px]" style={{ color: "var(--color-ink-faint)" }}>
@@ -50,7 +50,7 @@ export function IngatResults({ query, entry, onOpenSource, onBroaden }: IngatRes
       </p>
 
       <div className="grid gap-6 md:grid-cols-[1.5fr_1fr] md:items-start">
-        <AnswerBox answer={entry.answer} sourceCount={sources.length} />
+        <AnswerBox answer={answer} sourceCount={sources.length} />
 
         <div className="flex flex-col gap-3">
           {sources.map((s) => (

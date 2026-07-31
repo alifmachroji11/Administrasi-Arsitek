@@ -1,3 +1,5 @@
+"use client";
+
 import type { Capture } from "../lib/types";
 import { TAG_META } from "../lib/tags";
 import { PhotoPlate } from "./PhotoPlate";

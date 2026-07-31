@@ -23,13 +23,6 @@ export interface Source {
   fileSize?: string;
 }
 
-export interface SearchEntry {
-  id: string;
-  keywords: string[];
-  answer: string;
-  sourceIds: string[];
-}
-
 export type ConnectedSourceKind = "whatsapp" | "drive" | "gallery";
 
 export interface ConnectedSource {

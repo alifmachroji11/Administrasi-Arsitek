@@ -1,3 +1,5 @@
+"use client";
+
 import type { Source } from "../lib/types";
 import { PhotoPlate } from "../../components/PhotoPlate";
 
@@ -12,10 +14,10 @@ export function IngatSourceDetail({ source }: IngatSourceDetailProps) {
         {source.project} · {source.dateLabel}
       </p>
 
-      {source.kind === "chat" && source.context && (
+      {source.kind === "chat" && (
         <div className="rounded-[20px] p-4" style={{ background: "#e5ddd0" }}>
           <div className="flex flex-col gap-2">
-            {source.context.map((m, i) => (
+            {(source.context ?? [{ fromMe: false, text: source.snippet ?? "", time: "" }]).map((m, i) => (
               <div key={i} className={`flex ${m.fromMe ? "justify-end" : "justify-start"}`}>
                 <div
                   className="max-w-[78%] rounded-2xl px-3.5 py-2.5 text-[13.5px] leading-relaxed"
@@ -27,9 +29,11 @@ export function IngatSourceDetail({ source }: IngatSourceDetailProps) {
                   }}
                 >
                   {m.text}
-                  <div className="mt-1 text-right text-[10px]" style={{ color: "#8b8478" }}>
-                    {m.time}
-                  </div>
+                  {m.time && (
+                    <div className="mt-1 text-right text-[10px]" style={{ color: "#8b8478" }}>
+                      {m.time}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}

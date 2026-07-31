@@ -29,8 +29,6 @@ export interface Project {
   captures: Capture[];
 }
 
-export type Screen = "beranda" | "detail" | "laporan" | "onboarding";
-
 export type ReportRange = "week" | "all";
 
 export interface ReportItem {
