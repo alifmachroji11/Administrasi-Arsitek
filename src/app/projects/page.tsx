@@ -44,7 +44,7 @@ export default function ProjectsPage() {
           Notula
         </span>
         <button
-          onClick={() => signOut({ callbackUrl: "/login" })}
+          onClick={() => signOut({ callbackUrl: "/" })}
           className="text-[12.5px] font-medium"
           style={{ color: "var(--color-ink-faint)" }}
         >
