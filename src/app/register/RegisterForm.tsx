@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { GoogleSignInButton } from "@/components/GoogleSignInButton";
-import { BrandLogo } from "@/components/BrandLogo";
+import { BrandWordmark } from "@/components/BrandLogo";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export function RegisterForm({ googleEnabled }: { googleEnabled: boolean }) {
   const router = useRouter();
@@ -43,13 +44,13 @@ export function RegisterForm({ googleEnabled }: { googleEnabled: boolean }) {
   };
 
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center px-6 py-10" style={{ background: "var(--color-paper)" }}>
+    <div className="relative flex min-h-svh flex-col items-center justify-center px-6 py-10" style={{ background: "var(--color-paper)" }}>
+      <div className="absolute top-5 right-5">
+        <ThemeToggle />
+      </div>
       <div className="w-full max-w-[380px]">
-        <div className="mb-1.5 flex items-center justify-center gap-2.5">
-          <BrandLogo size={30} />
-          <h1 className="font-display text-[26px] font-semibold" style={{ color: "var(--color-ink)" }}>
-            NotulArs
-          </h1>
+        <div className="mb-1.5 flex items-center justify-center">
+          <BrandWordmark iconSize={32} textSize={28} />
         </div>
         <p className="mb-8 text-center text-[14px]" style={{ color: "var(--color-ink-soft)" }}>
           Buat akun studio kamu

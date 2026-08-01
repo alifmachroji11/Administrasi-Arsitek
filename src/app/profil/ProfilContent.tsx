@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 import { ConnectedSources } from "@/screens/ConnectedSources";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 interface Me {
   name: string;
@@ -92,6 +93,16 @@ export function ProfilContent() {
       </div>
 
       <ConnectedSources />
+
+      <div
+        className="mt-4 flex items-center justify-between rounded-xl border px-4 py-3"
+        style={{ borderColor: "var(--color-stone-line)", background: "var(--color-card)" }}
+      >
+        <span className="text-[13.5px] font-medium" style={{ color: "var(--color-ink)" }}>
+          Tampilan
+        </span>
+        <ThemeToggle />
+      </div>
 
       <button
         onClick={() => signOut({ callbackUrl: "/" })}

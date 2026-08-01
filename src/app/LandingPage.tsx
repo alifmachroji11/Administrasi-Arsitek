@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./landing.module.css";
-import { BrandLogo } from "@/components/BrandLogo";
+import { BrandWordmark } from "@/components/BrandLogo";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const SPLASH_HOLD_MS = 900;
 const SPLASH_FADE_MS = 500;
@@ -28,9 +29,8 @@ function SplashScreen() {
   return (
     <div className={cx(styles.splash, stage === "out" && styles.splashOut)} role="presentation">
       <div className={styles.splashMark}>
-        <BrandLogo size={56} />
+        <BrandWordmark iconSize={56} textSize={26} gap={16} animate className={styles.splashLockup} />
       </div>
-      <span className={styles.splashWord}>NotulArs</span>
     </div>
   );
 }
@@ -52,10 +52,7 @@ function MiniApp({ variant }: { variant: "laptop" | "phone" }) {
     <div className={cx(styles.miniApp, variant === "phone" && styles.miniAppPhone)}>
       <div className={styles.miniScroll}>
         <div className={styles.miniTop}>
-          <span className={styles.miniWordRow}>
-            <BrandLogo size={13} />
-            <span className={styles.miniWord}>NotulArs</span>
-          </span>
+          <BrandWordmark iconSize={13} textSize="clamp(9px, 4.6cqw, 12px)" gap={5} />
           <span className={styles.miniPill}>Aktif</span>
         </div>
         <div className={styles.miniHero}>
@@ -125,13 +122,13 @@ export function LandingPage() {
     <div ref={rootRef} className={styles.page}>
       <SplashScreen />
       <nav ref={navRef} className={styles.top}>
-        <span className={styles.wordRow}>
-          <BrandLogo size={24} />
-          <span className={styles.word}>NotulArs</span>
+        <BrandWordmark iconSize={24} textSize={19} />
+        <span className={styles.navActions}>
+          <ThemeToggle />
+          <Link className={styles.navCta} href="#case">
+            Lihat contoh nyata
+          </Link>
         </span>
-        <Link className={styles.navCta} href="#case">
-          Lihat contoh nyata
-        </Link>
       </nav>
 
       <header className={styles.hero}>
@@ -328,10 +325,7 @@ export function LandingPage() {
 
       <footer className={styles.footer}>
         <div className={styles.wrap}>
-          <span className={styles.wordRow}>
-            <BrandLogo size={18} />
-            <span className={styles.footerWord}>NotulArs</span>
-          </span>
+          <BrandWordmark iconSize={18} textSize={15} />
           <span className={styles.fine}>Dibuat untuk arsitek yang lebih suka di lokasi daripada di depan laporan.</span>
         </div>
       </footer>
