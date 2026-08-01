@@ -140,6 +140,10 @@ textarea {
 .font-display {
   font-family: var(--font-display);
   font-optical-sizing: auto;
+  /* Force Fraunces' standard letterforms — its "wonk" alternate curls
+     descenders like "j" into a wave that reads as a rendering glitch
+     at heading sizes. */
+  font-variation-settings: "SOFT" 0, "WONK" 0;
   text-wrap: balance;
 }
 
