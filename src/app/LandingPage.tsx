@@ -311,6 +311,12 @@ export function LandingPage() {
               Hubungkan Nomor WhatsApp
             </TransitionLink>
           </div>
+          <p className={cx(styles.closingNote, styles.reveal)}>
+            Masuk atau daftar dulu pakai Google — prosesnya kurang dari satu menit.{" "}
+            <TransitionLink href="/login" className={styles.closingNoteLink}>
+              Sudah punya akun? Masuk
+            </TransitionLink>
+          </p>
         </div>
       </section>
 
