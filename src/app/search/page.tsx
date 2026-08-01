@@ -8,6 +8,7 @@ import { IngatHome } from "@/ingat/screens/IngatHome";
 import { IngatResults } from "@/ingat/screens/IngatResults";
 import { IngatSourceDetail } from "@/ingat/screens/IngatSourceDetail";
 import type { Source } from "@/ingat/lib/types";
+import { navigateWithTransition } from "@/lib/viewTransition";
 
 type SearchScreen = "home" | "results" | "detail";
 
@@ -83,7 +84,7 @@ export default function SearchPage() {
         onSubmit={() => runQuery(query)}
         onBack={() => (screen === "detail" ? setScreen("results") : goHome())}
         onGoHome={goHome}
-        onGoSettings={() => router.push("/profil")}
+        onGoSettings={() => navigateWithTransition(router, "/profil")}
       />
 
       <div className="min-h-0 flex-1 overflow-y-auto">
@@ -115,9 +116,9 @@ export default function SearchPage() {
 
       <BottomNav
         active="cari"
-        onProyek={() => router.push("/projects")}
+        onProyek={() => navigateWithTransition(router, "/projects")}
         onCari={goHome}
-        onProfil={() => router.push("/profil")}
+        onProfil={() => navigateWithTransition(router, "/profil")}
       />
     </div>
   );
@@ -167,15 +168,16 @@ function IngatHeader({ screen, query, onQueryChange, onSubmit, onBack, onGoHome,
       <button
         onClick={onGoSettings}
         aria-label="Pengaturan"
-        className="flex h-9 w-9 flex-none items-center justify-center rounded-full"
+        className="flex h-9 w-9 flex-none items-center justify-center rounded-full transition-transform duration-150 ease-out active:scale-90"
         style={{ background: "var(--color-paper-dim)", color: "var(--color-ink)" }}
       >
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.8" />
+          <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
           <path
-            d="M19.4 13a7.97 7.97 0 0 0 0-2l2.1-1.6-2-3.4-2.5 1a8 8 0 0 0-1.7-1L14.9 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.5-1-2 3.4L6.4 11a7.97 7.97 0 0 0 0 2l-2.1 1.6 2 3.4 2.5-1a8 8 0 0 0 1.7 1l.4 2.9h4l.4-2.9a8 8 0 0 0 1.7-1l2.5 1 2-3.4-2.1-1.6Z"
+            d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"
             stroke="currentColor"
-            strokeWidth="1.3"
+            strokeWidth="1.6"
+            strokeLinecap="round"
             strokeLinejoin="round"
           />
         </svg>

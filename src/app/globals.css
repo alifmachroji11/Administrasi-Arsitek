@@ -140,6 +140,10 @@ textarea {
 .font-display {
   font-family: var(--font-display);
   font-optical-sizing: auto;
+  /* Force Fraunces' standard letterforms — its "wonk" alternate curls
+     descenders like "j" into a wave that reads as a rendering glitch
+     at heading sizes. */
+  font-variation-settings: "SOFT" 0, "WONK" 0;
   text-wrap: balance;
 }
 
@@ -196,4 +200,25 @@ textarea {
       transform: scaleX(1);
     }
   }
+}
+
+/* ---------- Bottom-nav tab transitions (View Transitions API) ---------- */
+@keyframes tab-out {
+  to {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.99);
+  }
+}
+@keyframes tab-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px) scale(0.99);
+  }
+}
+
+::view-transition-old(root) {
+  animation: tab-out 0.16s cubic-bezier(0.4, 0, 1, 1) both;
+}
+::view-transition-new(root) {
+  animation: tab-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
