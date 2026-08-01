@@ -18,7 +18,7 @@ const MINI_ROWS: Array<{ when: string; text: string; tag: "Progres" | "Revisi" }
 
 function MiniApp({ variant }: { variant: "laptop" | "phone" }) {
   return (
-    <div className={styles.miniApp}>
+    <div className={cx(styles.miniApp, variant === "phone" && styles.miniAppPhone)}>
       <div className={styles.miniScroll}>
         <div className={styles.miniTop}>
           <span className={styles.miniWord}>Notula</span>

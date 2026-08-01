@@ -262,6 +262,7 @@
   display: flex;
   flex-direction: column;
   font-family: var(--font-sans, inherit);
+  text-align: left;
 }
 .miniScroll {
   flex: 1;
@@ -271,6 +272,30 @@
   padding: 14px 14px 16px;
   scrollbar-width: thin;
   scrollbar-color: var(--color-stone-line) transparent;
+}
+.miniAppPhone .miniScroll {
+  padding: 11px 11px 12px;
+}
+.miniAppPhone .miniTop {
+  margin-bottom: 9px;
+}
+.miniAppPhone .miniHero {
+  margin-bottom: 9px;
+}
+.miniAppPhone .miniHeadline {
+  font-size: 11.5px;
+}
+.miniAppPhone .miniList {
+  gap: 7px;
+  padding: 7px 0;
+}
+.miniAppPhone .miniRowText {
+  font-size: 8px;
+}
+.miniAppPhone .miniCta {
+  margin-top: 10px;
+  font-size: 8px;
+  padding: 7px 0;
 }
 .miniScroll::-webkit-scrollbar {
   width: 5px;
@@ -332,8 +357,9 @@
 }
 .miniRow {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 6px;
+  min-width: 0;
 }
 .miniWhen {
   flex: none;
@@ -346,7 +372,6 @@
   height: 5px;
   border-radius: 999px;
   flex: none;
-  align-self: center;
 }
 .miniTagProgres {
   background: var(--color-tag-progres);
@@ -355,9 +380,14 @@
   background: var(--color-accent);
 }
 .miniRowText {
+  flex: 1;
+  min-width: 0;
   font-size: 8.5px;
   line-height: 1.4;
   color: var(--color-ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .miniCta {
   display: block;
