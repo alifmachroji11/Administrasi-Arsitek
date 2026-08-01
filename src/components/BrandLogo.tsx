@@ -20,7 +20,7 @@ interface BrandLogoProps {
  * referencing a floor plan/section cut — the blueprint motif.
  */
 export function BrandLogo({ size = 28, tone = "ink", rounded = false, bg, animate = false, className }: BrandLogoProps) {
-  const legColor = tone === "onDark" ? CREAM : "var(--color-ink)";
+  const legColor = tone === "onDark" ? CREAM : "var(--brand-mark-ink)";
   const accentColor = tone === "mono" ? legColor : BLUEPRINT_BLUE;
   const crossbarColor = tone === "mono" ? legColor : BLUEPRINT_BLUE_SOFT;
 
@@ -79,7 +79,7 @@ export function BrandWordmark({
   animate?: boolean;
   className?: string;
 }) {
-  const textColor = tone === "onDark" ? CREAM : "var(--color-ink)";
+  const textColor = tone === "onDark" ? CREAM : "var(--brand-mark-ink)";
   return (
     <span className={className} style={{ display: "inline-flex", alignItems: "center", gap }}>
       <BrandLogo size={iconSize} tone={tone} animate={animate} />
