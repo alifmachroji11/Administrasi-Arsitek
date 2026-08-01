@@ -1,8 +1,39 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./landing.module.css";
+import { BrandLogo } from "@/components/BrandLogo";
+
+const SPLASH_HOLD_MS = 900;
+const SPLASH_FADE_MS = 500;
+
+function SplashScreen() {
+  const [stage, setStage] = useState<"in" | "out" | "done">("in");
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const holdMs = reduceMotion ? 150 : SPLASH_HOLD_MS;
+    const fadeMs = reduceMotion ? 0 : SPLASH_FADE_MS;
+    const outTimer = window.setTimeout(() => setStage("out"), holdMs);
+    const doneTimer = window.setTimeout(() => setStage("done"), holdMs + fadeMs);
+    return () => {
+      window.clearTimeout(outTimer);
+      window.clearTimeout(doneTimer);
+    };
+  }, []);
+
+  if (stage === "done") return null;
+
+  return (
+    <div className={cx(styles.splash, stage === "out" && styles.splashOut)} role="presentation">
+      <div className={styles.splashMark}>
+        <BrandLogo size={56} />
+      </div>
+      <span className={styles.splashWord}>NotulArs</span>
+    </div>
+  );
+}
 
 function cx(...classes: Array<string | false | undefined>): string {
   return classes.filter(Boolean).join(" ");
@@ -21,7 +52,10 @@ function MiniApp({ variant }: { variant: "laptop" | "phone" }) {
     <div className={cx(styles.miniApp, variant === "phone" && styles.miniAppPhone)}>
       <div className={styles.miniScroll}>
         <div className={styles.miniTop}>
-          <span className={styles.miniWord}>Notula</span>
+          <span className={styles.miniWordRow}>
+            <BrandLogo size={13} />
+            <span className={styles.miniWord}>NotulArs</span>
+          </span>
           <span className={styles.miniPill}>Aktif</span>
         </div>
         <div className={styles.miniHero}>
@@ -89,8 +123,12 @@ export function LandingPage() {
 
   return (
     <div ref={rootRef} className={styles.page}>
+      <SplashScreen />
       <nav ref={navRef} className={styles.top}>
-        <span className={styles.word}>Notula</span>
+        <span className={styles.wordRow}>
+          <BrandLogo size={24} />
+          <span className={styles.word}>NotulArs</span>
+        </span>
         <Link className={styles.navCta} href="#case">
           Lihat contoh nyata
         </Link>
@@ -103,7 +141,7 @@ export function LandingPage() {
             Catatan proyekmu, <em>tersusun sendiri</em> — dari pesan yang sudah kamu kirim
           </h1>
           <p className={styles.lede}>
-            Foto lapangan, voice note, revisi lisan — semuanya sudah kamu forward ke WhatsApp klien tiap hari. Notula
+            Foto lapangan, voice note, revisi lisan — semuanya sudah kamu forward ke WhatsApp klien tiap hari. NotulArs
             cuma membaca yang sudah ada, lalu merapikannya. Tidak ada aplikasi baru yang harus dipelajari tim kamu.
           </p>
           <div className={styles.actions}>
@@ -152,11 +190,11 @@ export function LandingPage() {
             <div className={cx(styles.step, styles.reveal)}>
               <span className={cx(styles.stepNum, styles.mono)}>01</span>
               <h3>Forward seperti biasa</h3>
-              <p>Foto progres, voice note dari lokasi, catatan revisi klien — kirim ke nomor Notula, sama seperti forward ke rekan kerja.</p>
+              <p>Foto progres, voice note dari lokasi, catatan revisi klien — kirim ke nomor NotulArs, sama seperti forward ke rekan kerja.</p>
             </div>
             <div className={cx(styles.step, styles.reveal)}>
               <span className={cx(styles.stepNum, styles.mono)}>02</span>
-              <h3>Notula membaca &amp; menandai</h3>
+              <h3>NotulArs membaca &amp; menandai</h3>
               <p>Tiap tangkapan otomatis masuk ke proyek yang tepat, ditandai progres, revisi, atau perlu tindak lanjut — tanpa kamu susun manual.</p>
             </div>
             <div className={cx(styles.step, styles.reveal)}>
@@ -179,7 +217,7 @@ export function LandingPage() {
             <div className={cx(styles.caseCard, styles.reveal)}>
               <p className={styles.quote}>
                 &ldquo;Dulu tiap Minggu malam saya duduk dua jam nyusun ulang chat dari tiga proyek sekaligus. Sekarang
-                saya buka Notula, laporannya sudah setengah jadi — saya tinggal baca ulang lima menit.&rdquo;
+                saya buka NotulArs, laporannya sudah setengah jadi — saya tinggal baca ulang lima menit.&rdquo;
               </p>
               <div className={styles.casePerson}>
                 <div className={styles.caseAvatar}>NP</div>
@@ -240,7 +278,7 @@ export function LandingPage() {
                 <div className={styles.tlItem}>
                   <div className={cx(styles.tlWhen, styles.mono)}>Kamis</div>
                   <div className={styles.tlWhat} style={{ color: "var(--color-ink-soft)" }}>
-                    Nadia buka Notula, semua tangkapan minggu ini sudah tersusun rapi. Laporan siap dikirim dalam lima
+                    Nadia buka NotulArs, semua tangkapan minggu ini sudah tersusun rapi. Laporan siap dikirim dalam lima
                     menit.
                   </div>
                 </div>
@@ -254,7 +292,7 @@ export function LandingPage() {
         <div className={styles.wrap}>
           <div className={cx(styles.sectionHead, styles.reveal)}>
             <span className={styles.eyebrow}>Kenapa terasa ringan</span>
-            <h2>Notula sengaja tidak menambah kerjaan</h2>
+            <h2>NotulArs sengaja tidak menambah kerjaan</h2>
           </div>
           <div className={cx(styles.featureRow, styles.reveal)}>
             <div className={styles.feature}>
@@ -263,7 +301,7 @@ export function LandingPage() {
             </div>
             <div className={styles.feature}>
               <h3>Tidak perlu diketik ulang</h3>
-              <p>Foto, suara, dan teks yang masuk dibaca apa adanya. Notula menyusun, bukan mengganti cara kamu bekerja.</p>
+              <p>Foto, suara, dan teks yang masuk dibaca apa adanya. NotulArs menyusun, bukan mengganti cara kamu bekerja.</p>
             </div>
             <div className={styles.feature}>
               <h3>Bisa dicari kembali</h3>
@@ -290,7 +328,10 @@ export function LandingPage() {
 
       <footer className={styles.footer}>
         <div className={styles.wrap}>
-          <span className={styles.footerWord}>Notula</span>
+          <span className={styles.wordRow}>
+            <BrandLogo size={18} />
+            <span className={styles.footerWord}>NotulArs</span>
+          </span>
           <span className={styles.fine}>Dibuat untuk arsitek yang lebih suka di lokasi daripada di depan laporan.</span>
         </div>
       </footer>

@@ -70,7 +70,7 @@ export function ConnectedSources() {
               WhatsApp
             </p>
             <p className="text-[12.5px]" style={{ color: "var(--color-ink-faint)" }}>
-              Pesan yang diforward ke bot Notula per proyek
+              Pesan yang diforward ke bot NotulArs per proyek
             </p>
             {whatsappNumber === undefined ? (
               <p className="font-mono-meta mt-1 text-[10.5px]" style={{ color: "var(--color-ink-faint)" }}>
@@ -122,7 +122,7 @@ export function ConnectedSources() {
         className="mt-6 rounded-[16px] p-4 text-[12.5px] leading-relaxed"
         style={{ background: "var(--color-paper-dim)", color: "var(--color-ink-soft)" }}
       >
-        <strong style={{ color: "var(--color-ink)" }}>Privasi:</strong> Notula hanya membaca, tidak pernah mengirim
+        <strong style={{ color: "var(--color-ink)" }}>Privasi:</strong> NotulArs hanya membaca, tidak pernah mengirim
         pesan atas nama kamu. Data yang tersinkron hanya dipakai untuk menyusun catatan dan menjawab pertanyaanmu
         sendiri.
       </div>

@@ -78,7 +78,7 @@ export async function POST(req: Request) {
       const user = await repo.getUserByWhatsappNumber(fromNumber);
 
       if (!user) {
-        // Sender hasn't linked/verified this number to a Notula account.
+        // Sender hasn't linked/verified this number to a NotulArs account.
         // Per Bagian 5, group-member privacy is an open product decision —
         // deliberately dropping unlinked senders rather than guessing.
         console.warn(`[webhook] pesan dari nomor belum terverifikasi: ${fromNumber}`);

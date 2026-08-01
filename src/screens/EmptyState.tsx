@@ -5,7 +5,7 @@ interface EmptyStateProps {
 }
 
 const STEPS = [
-  "Hubungkan nomor WhatsApp bot Notula",
+  "Hubungkan nomor WhatsApp bot NotulArs",
   "Forward foto, voice note, atau catatan per proyek",
   "Lihat semuanya tersusun rapi di sini",
 ];
@@ -26,7 +26,7 @@ export function EmptyState({ onConnect }: EmptyStateProps) {
         Belum ada proyek
       </h2>
       <p className="mx-auto mt-2 mb-8 max-w-[280px] text-[14px] leading-relaxed" style={{ color: "var(--color-ink-soft)" }}>
-        Hubungkan nomor WhatsApp, lalu forward apa saja dari lokasi — Notula yang merapikan.
+        Hubungkan nomor WhatsApp, lalu forward apa saja dari lokasi — NotulArs yang merapikan.
       </p>
 
       <ol className="mb-8 flex w-full max-w-[280px] flex-col gap-4 text-left">

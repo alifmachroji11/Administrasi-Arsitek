@@ -57,7 +57,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return session;
     },
     async signIn({ user, account }) {
-      // Google sign-in: create a Notula account on first login (no password —
+      // Google sign-in: create a NotulArs account on first login (no password —
       // this user authenticates via Google only).
       if (account?.provider === "google" && user.email) {
         const repo = getRepository();
