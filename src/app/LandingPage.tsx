@@ -40,7 +40,7 @@ function MiniApp({ variant }: { variant: "laptop" | "phone" }) {
           ))}
         </div>
         <Link href="/register" className={styles.miniCta}>
-          Kirim Laporan Minggu Ini
+          {variant === "phone" ? "Kirim Laporan" : "Kirim Laporan Minggu Ini"}
         </Link>
       </div>
       {variant === "laptop" && (
