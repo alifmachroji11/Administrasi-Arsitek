@@ -266,12 +266,13 @@
   min-height: 0;
   overflow-y: auto;
   overscroll-behavior: contain;
-  padding: 14px 14px 16px;
+  padding: 16px 14px 16px;
   scrollbar-width: thin;
   scrollbar-color: var(--color-stone-line) transparent;
 }
 .miniAppPhone .miniScroll {
-  padding: 11px 11px 12px;
+  /* extra top clearance so content doesn't sit under the dynamic island */
+  padding: 26px 11px 12px;
 }
 .miniAppPhone .miniTop {
   margin-bottom: 9px;
