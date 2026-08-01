@@ -3,10 +3,11 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
-import Link from "next/link";
 import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 import { BrandWordmark } from "@/components/BrandLogo";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { TransitionLink } from "@/components/TransitionLink";
+import { markEntrySplash } from "@/lib/entrySplash";
 
 export function RegisterForm({ googleEnabled }: { googleEnabled: boolean }) {
   const router = useRouter();
@@ -40,6 +41,7 @@ export function RegisterForm({ googleEnabled }: { googleEnabled: boolean }) {
       router.push("/login");
       return;
     }
+    markEntrySplash();
     router.push("/onboarding");
   };
 
@@ -83,9 +85,9 @@ export function RegisterForm({ googleEnabled }: { googleEnabled: boolean }) {
 
         <p className="mt-5 text-center text-[13.5px]" style={{ color: "var(--color-ink-soft)" }}>
           Sudah punya akun?{" "}
-          <Link href="/login" className="font-semibold" style={{ color: "var(--color-accent)" }}>
+          <TransitionLink href="/login" className="font-semibold" style={{ color: "var(--color-accent)" }}>
             Masuk
-          </Link>
+          </TransitionLink>
         </p>
       </div>
     </div>

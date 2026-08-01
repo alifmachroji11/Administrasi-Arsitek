@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { PhotoPlate } from "@/components/PhotoPlate";
 import { BOT_DISPLAY_NUMBER as BOT_NUMBER } from "@/lib/constants";
+import { Splash } from "@/components/Splash";
+import { consumeEntrySplash } from "@/lib/entrySplash";
 
 type Stage = "bot-number" | "enter-phone" | "enter-code" | "start-project";
 
@@ -18,6 +20,13 @@ export default function OnboardingPage() {
   const [clientName, setClientName] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [showSplash, setShowSplash] = useState(false);
+
+  useEffect(() => {
+    // Genuinely reading external state (sessionStorage) at mount.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setShowSplash(consumeEntrySplash());
+  }, []);
 
   const copyNumber = () => {
     navigator.clipboard?.writeText(BOT_NUMBER.replace(/\D/g, "")).catch(() => {});
@@ -82,6 +91,7 @@ export default function OnboardingPage() {
 
   return (
     <div className="mx-auto flex min-h-svh max-w-[480px] flex-col px-6 pt-6 pb-8" style={{ background: "var(--color-paper)" }}>
+      {showSplash && <Splash holdMs={700} onDone={() => setShowSplash(false)} />}
       <div className="mb-8 flex items-center justify-between">
         <span className="font-display text-[16px] font-semibold" style={{ color: "var(--color-ink)" }}>
           NotulArs

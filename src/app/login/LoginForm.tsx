@@ -3,10 +3,11 @@
 import { useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
-import Link from "next/link";
 import { GoogleSignInButton } from "@/components/GoogleSignInButton";
 import { BrandWordmark } from "@/components/BrandLogo";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { TransitionLink } from "@/components/TransitionLink";
+import { markEntrySplash } from "@/lib/entrySplash";
 
 function LoginFormInner({ googleEnabled }: { googleEnabled: boolean }) {
   const router = useRouter();
@@ -26,6 +27,7 @@ function LoginFormInner({ googleEnabled }: { googleEnabled: boolean }) {
       setError("Email atau kata sandi salah.");
       return;
     }
+    markEntrySplash();
     router.push(params.get("next") || "/projects");
   };
 
@@ -68,9 +70,9 @@ function LoginFormInner({ googleEnabled }: { googleEnabled: boolean }) {
 
         <p className="mt-5 text-center text-[13.5px]" style={{ color: "var(--color-ink-soft)" }}>
           Belum punya akun?{" "}
-          <Link href="/register" className="font-semibold" style={{ color: "var(--color-accent)" }}>
+          <TransitionLink href="/register" className="font-semibold" style={{ color: "var(--color-accent)" }}>
             Daftar
-          </Link>
+          </TransitionLink>
         </p>
       </div>
     </div>
