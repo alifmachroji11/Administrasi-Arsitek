@@ -117,8 +117,8 @@ export function LandingPage() {
         <BrandWordmark iconSize={24} textSize={19} />
         <span className={styles.navActions}>
           <ThemeToggle />
-          <Link className={styles.navCta} href="#case">
-            Lihat contoh nyata
+          <Link className={styles.navCta} href="#kenapa">
+            Kenapa NotulArs?
           </Link>
         </span>
       </nav>
@@ -131,7 +131,7 @@ export function LandingPage() {
           </h1>
           <p className={styles.lede}>
             Foto lapangan, voice note, revisi lisan — semuanya sudah kamu forward ke WhatsApp klien tiap hari. NotulArs
-            cuma membaca yang sudah ada, lalu merapikannya. Tidak ada aplikasi baru yang harus dipelajari tim kamu.
+            hanya membaca yang sudah ada, lalu merapikannya. Tidak ada aplikasi baru yang harus dipelajari tim kamu.
           </p>
           <div className={styles.actions}>
             <Link className={styles.btnPrimary} href="#case">
@@ -276,7 +276,7 @@ export function LandingPage() {
         </div>
       </section>
 
-      <section className={styles.section}>
+      <section className={styles.section} id="kenapa">
         <div className={styles.wrap}>
           <div className={cx(styles.sectionHead, styles.reveal)}>
             <span className={styles.eyebrow}>Kenapa terasa ringan</span>
@@ -311,6 +311,12 @@ export function LandingPage() {
               Hubungkan Nomor WhatsApp
             </TransitionLink>
           </div>
+          <p className={cx(styles.closingNote, styles.reveal)}>
+            Masuk atau daftar dulu pakai Google — prosesnya kurang dari satu menit.{" "}
+            <TransitionLink href="/login" className={styles.closingNoteLink}>
+              Sudah punya akun? Masuk
+            </TransitionLink>
+          </p>
         </div>
       </section>
 
