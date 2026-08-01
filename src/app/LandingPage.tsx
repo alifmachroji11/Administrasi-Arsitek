@@ -8,37 +8,51 @@ function cx(...classes: Array<string | false | undefined>): string {
   return classes.filter(Boolean).join(" ");
 }
 
-interface Bubble {
-  text: string;
-  tag: "Progres" | "Revisi";
-  x: number;
-  delay: number;
-}
-
-const BUBBLES: Bubble[] = [
-  { text: "Keramik teras selesai", tag: "Progres", x: 0.16, delay: 0 },
-  { text: "Pagar jadi hijau tua", tag: "Revisi", x: 0.62, delay: 0.9 },
-  { text: "Pondasi carport dicor", tag: "Progres", x: 0.3, delay: 1.8 },
+const MINI_ROWS: Array<{ text: string; tag: "Progres" | "Revisi" }> = [
+  { text: "Keramik teras selesai", tag: "Progres" },
+  { text: "Pagar jadi hijau tua", tag: "Revisi" },
+  { text: "Pondasi carport dicor", tag: "Progres" },
 ];
-const CYCLE = 4.2;
 
-function ease(t: number): number {
-  return 1 - Math.pow(1 - t, 3);
-}
-
-function roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number) {
-  ctx.beginPath();
-  ctx.moveTo(x + r, y);
-  ctx.arcTo(x + w, y, x + w, y + h, r);
-  ctx.arcTo(x + w, y + h, x, y + h, r);
-  ctx.arcTo(x, y + h, x, y, r);
-  ctx.arcTo(x, y, x + w, y, r);
-  ctx.closePath();
+function MiniApp({ variant }: { variant: "laptop" | "phone" }) {
+  return (
+    <div className={styles.miniApp}>
+      <div className={styles.miniTop}>
+        <span className={styles.miniWord}>Notula</span>
+        <span className={styles.miniPill}>Aktif</span>
+      </div>
+      <div className={styles.miniHero}>
+        <span className={styles.miniEyebrow}>Renovasi Rumah Bu Sari</span>
+        <p className={styles.miniHeadline}>
+          Catatan proyek, <em>tersusun sendiri</em>
+        </p>
+      </div>
+      <div className={styles.miniList}>
+        {MINI_ROWS.map((row) => (
+          <div key={row.text} className={styles.miniRow}>
+            <span className={cx(styles.miniTag, row.tag === "Revisi" ? styles.miniTagRevisi : styles.miniTagProgres)} />
+            <span className={styles.miniRowText}>{row.text}</span>
+          </div>
+        ))}
+      </div>
+      <div className={styles.miniCta}>Kirim Laporan Minggu Ini</div>
+      {variant === "laptop" && (
+        <div className={styles.miniTaskbar}>
+          <span className={styles.miniStart} aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <span />
+          </span>
+          <span className={cx(styles.miniTaskClock, styles.mono)}>16.05</span>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export function LandingPage() {
   const navRef = useRef<HTMLElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -64,137 +78,6 @@ export function LandingPage() {
     );
     targets.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let start = performance.now();
-    let raf = 0;
-
-    function readTokens() {
-      const cs = getComputedStyle(document.documentElement);
-      return {
-        paper: cs.getPropertyValue("--color-card").trim(),
-        line: cs.getPropertyValue("--color-stone-line").trim(),
-        ink: cs.getPropertyValue("--color-ink").trim(),
-        inkFaint: cs.getPropertyValue("--color-ink-faint").trim(),
-        accent: cs.getPropertyValue("--color-accent").trim(),
-        moss: cs.getPropertyValue("--color-tag-progres").trim(),
-      };
-    }
-
-    function resize() {
-      if (!canvas) return;
-      const rect = canvas.getBoundingClientRect();
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
-      canvas.width = rect.width * dpr;
-      canvas.height = rect.height * dpr;
-      ctx?.setTransform(dpr, 0, 0, dpr, 0, 0);
-    }
-    resize();
-    window.addEventListener("resize", resize);
-
-    function draw(now: number) {
-      if (!canvas || !ctx) return;
-      const rect = canvas.getBoundingClientRect();
-      const w = rect.width;
-      const h = rect.height;
-      const t = ((now - start) / 1000) % CYCLE;
-      const tok = readTokens();
-
-      ctx.clearRect(0, 0, w, h);
-
-      const trayY = h * 0.74;
-      roundRect(ctx, w * 0.14, trayY, w * 0.72, h * 0.2, 14);
-      ctx.fillStyle = tok.paper;
-      ctx.strokeStyle = tok.line;
-      ctx.lineWidth = 1;
-      ctx.fill();
-      ctx.stroke();
-      ctx.fillStyle = tok.inkFaint;
-      ctx.font = '500 12px "Public Sans", sans-serif';
-      ctx.fillText("Renovasi Rumah Bu Sari — 3 tangkapan tersusun", w * 0.14 + 18, trayY + 26);
-      for (let i = 0; i < 3; i++) {
-        const ly = trayY + 46 + i * 16;
-        ctx.strokeStyle = tok.line;
-        ctx.beginPath();
-        ctx.moveTo(w * 0.14 + 18, ly);
-        ctx.lineTo(w * 0.14 + w * 0.72 * (i === 1 ? 0.5 : 0.68) - 18, ly);
-        ctx.stroke();
-      }
-
-      BUBBLES.forEach((b) => {
-        let local = t - b.delay;
-        if (local < 0) local += CYCLE;
-        const settleAt = 2.0;
-        const bx = w * b.x;
-        let by: number;
-        let alpha: number;
-        let scale: number;
-
-        if (local < settleAt) {
-          const p = ease(Math.min(local / settleAt, 1));
-          by = h * 0.08 + p * (trayY - h * 0.08 - 30);
-          alpha = Math.min(local / 0.3, 1);
-          scale = 1;
-        } else {
-          by = trayY - 30;
-          const settledT = local - settleAt;
-          alpha = Math.max(1 - settledT / 1.6, 0);
-          scale = 1 - Math.min(settledT / 2.2, 1) * 0.28;
-        }
-        if (local >= CYCLE - 0.05) alpha = 0;
-        if (alpha <= 0.02) return;
-
-        ctx.save();
-        ctx.globalAlpha = alpha;
-        ctx.translate(bx, by);
-        ctx.scale(scale, scale);
-
-        const padX = 14;
-        ctx.font = '500 13px "Public Sans", sans-serif';
-        const tw = ctx.measureText(b.text).width;
-        const bw = tw + padX * 2 + 46;
-        const bh = 34;
-
-        roundRect(ctx, -bw / 2, -bh / 2, bw, bh, 17);
-        ctx.fillStyle = tok.paper;
-        ctx.strokeStyle = tok.line;
-        ctx.fill();
-        ctx.stroke();
-
-        const dotColor = b.tag === "Revisi" ? tok.accent : tok.moss;
-        ctx.beginPath();
-        ctx.arc(-bw / 2 + 16, 0, 3, 0, Math.PI * 2);
-        ctx.fillStyle = dotColor;
-        ctx.fill();
-
-        ctx.fillStyle = tok.ink;
-        ctx.textBaseline = "middle";
-        ctx.fillText(b.text, -bw / 2 + 26, 1);
-
-        ctx.restore();
-      });
-
-      if (!reduceMotion) raf = requestAnimationFrame(draw);
-    }
-
-    if (reduceMotion) {
-      start = performance.now() - 1.999 * 1000;
-      draw(performance.now());
-    } else {
-      raf = requestAnimationFrame(draw);
-    }
-
-    return () => {
-      window.removeEventListener("resize", resize);
-      cancelAnimationFrame(raf);
-    };
   }, []);
 
   return (
@@ -225,13 +108,29 @@ export function LandingPage() {
             </Link>
           </div>
 
-          <div className={cx(styles.sceneFrame, styles.reveal)}>
-            <canvas ref={canvasRef} className={styles.scene} aria-hidden="true" />
-            <div className={styles.sceneCaption}>
-              <span className={styles.sceneDot} />
-              Pesan WhatsApp yang masuk, tersusun jadi catatan proyek — tanpa kamu ketik ulang.
+          <div className={cx(styles.deviceShowcase, styles.reveal)}>
+            <div className={styles.laptop} aria-hidden="true">
+              <div className={styles.laptopBody}>
+                <span className={styles.laptopCam} />
+                <div className={styles.laptopScreen}>
+                  <MiniApp variant="laptop" />
+                </div>
+              </div>
+              <div className={styles.laptopBase}>
+                <div className={styles.laptopHinge} />
+              </div>
+            </div>
+            <div className={styles.phone} aria-hidden="true">
+              <div className={styles.phoneIsland} />
+              <div className={styles.phoneScreen}>
+                <MiniApp variant="phone" />
+              </div>
             </div>
           </div>
+          <p className={styles.deviceCaption}>
+            <span className={styles.sceneDot} />
+            Pesan WhatsApp yang masuk, tersusun jadi catatan proyek — di laptop maupun di HP.
+          </p>
         </div>
       </header>
 
