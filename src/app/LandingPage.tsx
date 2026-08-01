@@ -8,34 +8,41 @@ function cx(...classes: Array<string | false | undefined>): string {
   return classes.filter(Boolean).join(" ");
 }
 
-const MINI_ROWS: Array<{ text: string; tag: "Progres" | "Revisi" }> = [
-  { text: "Keramik teras selesai", tag: "Progres" },
-  { text: "Pagar jadi hijau tua", tag: "Revisi" },
-  { text: "Pondasi carport dicor", tag: "Progres" },
+const MINI_ROWS: Array<{ when: string; text: string; tag: "Progres" | "Revisi" }> = [
+  { when: "09.12", text: "Keramik teras selesai dipasang", tag: "Progres" },
+  { when: "11.40", text: "Klien minta pagar diganti hijau tua", tag: "Revisi" },
+  { when: "16.05", text: "Pondasi carport selesai dicor", tag: "Progres" },
+  { when: "Kamis", text: "Voice note: material atap sudah tiba di lokasi", tag: "Progres" },
+  { when: "Kamis", text: "Klien setuju revisi warna pagar", tag: "Revisi" },
 ];
 
 function MiniApp({ variant }: { variant: "laptop" | "phone" }) {
   return (
-    <div className={styles.miniApp}>
-      <div className={styles.miniTop}>
-        <span className={styles.miniWord}>Notula</span>
-        <span className={styles.miniPill}>Aktif</span>
+    <div className={cx(styles.miniApp, variant === "phone" && styles.miniAppPhone)}>
+      <div className={styles.miniScroll}>
+        <div className={styles.miniTop}>
+          <span className={styles.miniWord}>Notula</span>
+          <span className={styles.miniPill}>Aktif</span>
+        </div>
+        <div className={styles.miniHero}>
+          <span className={styles.miniEyebrow}>Renovasi Rumah Bu Sari</span>
+          <p className={styles.miniHeadline}>
+            Catatan proyek, <em>tersusun sendiri</em>
+          </p>
+        </div>
+        <div className={styles.miniList}>
+          {MINI_ROWS.map((row, i) => (
+            <div key={`${row.when}-${i}`} className={styles.miniRow}>
+              <span className={cx(styles.miniWhen, styles.mono)}>{row.when}</span>
+              <span className={cx(styles.miniTag, row.tag === "Revisi" ? styles.miniTagRevisi : styles.miniTagProgres)} />
+              <span className={styles.miniRowText}>{row.text}</span>
+            </div>
+          ))}
+        </div>
+        <Link href="/register" className={styles.miniCta}>
+          Kirim Laporan Minggu Ini
+        </Link>
       </div>
-      <div className={styles.miniHero}>
-        <span className={styles.miniEyebrow}>Renovasi Rumah Bu Sari</span>
-        <p className={styles.miniHeadline}>
-          Catatan proyek, <em>tersusun sendiri</em>
-        </p>
-      </div>
-      <div className={styles.miniList}>
-        {MINI_ROWS.map((row) => (
-          <div key={row.text} className={styles.miniRow}>
-            <span className={cx(styles.miniTag, row.tag === "Revisi" ? styles.miniTagRevisi : styles.miniTagProgres)} />
-            <span className={styles.miniRowText}>{row.text}</span>
-          </div>
-        ))}
-      </div>
-      <div className={styles.miniCta}>Kirim Laporan Minggu Ini</div>
       {variant === "laptop" && (
         <div className={styles.miniTaskbar}>
           <span className={styles.miniStart} aria-hidden="true">
@@ -109,19 +116,19 @@ export function LandingPage() {
           </div>
 
           <div className={cx(styles.deviceShowcase, styles.reveal)}>
-            <div className={styles.laptop} aria-hidden="true">
+            <div className={styles.laptop}>
               <div className={styles.laptopBody}>
-                <span className={styles.laptopCam} />
+                <span className={styles.laptopCam} aria-hidden="true" />
                 <div className={styles.laptopScreen}>
                   <MiniApp variant="laptop" />
                 </div>
               </div>
-              <div className={styles.laptopBase}>
+              <div className={styles.laptopBase} aria-hidden="true">
                 <div className={styles.laptopHinge} />
               </div>
             </div>
-            <div className={styles.phone} aria-hidden="true">
-              <div className={styles.phoneIsland} />
+            <div className={styles.phone}>
+              <div className={styles.phoneIsland} aria-hidden="true" />
               <div className={styles.phoneScreen}>
                 <MiniApp variant="phone" />
               </div>
