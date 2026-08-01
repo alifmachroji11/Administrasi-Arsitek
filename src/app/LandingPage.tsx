@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./landing.module.css";
 import { BrandWordmark } from "@/components/BrandLogo";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const SPLASH_HOLD_MS = 900;
 const SPLASH_FADE_MS = 500;
@@ -122,9 +123,12 @@ export function LandingPage() {
       <SplashScreen />
       <nav ref={navRef} className={styles.top}>
         <BrandWordmark iconSize={24} textSize={19} />
-        <Link className={styles.navCta} href="#case">
-          Lihat contoh nyata
-        </Link>
+        <span className={styles.navActions}>
+          <ThemeToggle />
+          <Link className={styles.navCta} href="#case">
+            Lihat contoh nyata
+          </Link>
+        </span>
       </nav>
 
       <header className={styles.hero}>

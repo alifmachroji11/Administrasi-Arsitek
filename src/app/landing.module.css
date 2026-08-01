@@ -51,6 +51,11 @@
   border-bottom: 1px solid transparent;
   transition: border-color 0.3s ease;
 }
+.navActions {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
 .topScrolled {
   border-bottom-color: var(--color-stone-line);
 }

@@ -47,41 +47,43 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-paper: #201a13;
-    --color-paper-dim: #241d15;
-    --color-card: #2a2218;
-    --color-ink: #f3ecdd;
-    --color-ink-soft: #bfb09a;
-    --color-ink-faint: #7d7160;
-    --color-stone: #423827;
-    --color-stone-line: rgba(255, 248, 232, 0.09);
+/* Theme is an explicit user choice (see ThemeToggle + the bootstrap script
+   in layout.tsx), defaulting to light regardless of OS preference — so
+   dark values live under [data-theme="dark"], not a prefers-color-scheme
+   media query. */
+:root[data-theme="dark"] {
+  --color-paper: #201a13;
+  --color-paper-dim: #241d15;
+  --color-card: #2a2218;
+  --color-ink: #f3ecdd;
+  --color-ink-soft: #bfb09a;
+  --color-ink-faint: #7d7160;
+  --color-stone: #423827;
+  --color-stone-line: rgba(255, 248, 232, 0.09);
 
-    --color-accent: #dd8058;
-    --color-accent-deep: #f0a17c;
-    --color-accent-soft: #3c2c1f;
-    --color-accent-soft-ink: #eab08c;
+  --color-accent: #dd8058;
+  --color-accent-deep: #f0a17c;
+  --color-accent-soft: #3c2c1f;
+  --color-accent-soft-ink: #eab08c;
 
-    --color-tag-progres: #b6c497;
-    --color-tag-progres-bg: #303524;
-    --color-tag-revisi: #dd8058;
-    --color-tag-revisi-bg: #3c2c1f;
-    --color-tag-tindak: #e2b967;
-    --color-tag-tindak-bg: #3a3121;
-    --color-tag-material: #c9bda8;
-    --color-tag-material-bg: #302a1f;
-    --color-tag-klien: #9bc0ce;
-    --color-tag-klien-bg: #212f34;
+  --color-tag-progres: #b6c497;
+  --color-tag-progres-bg: #303524;
+  --color-tag-revisi: #dd8058;
+  --color-tag-revisi-bg: #3c2c1f;
+  --color-tag-tindak: #e2b967;
+  --color-tag-tindak-bg: #3a3121;
+  --color-tag-material: #c9bda8;
+  --color-tag-material-bg: #302a1f;
+  --color-tag-klien: #9bc0ce;
+  --color-tag-klien-bg: #212f34;
 
-    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 30px -14px rgba(0, 0, 0, 0.55);
-    --shadow-float: 0 10px 24px -6px rgba(221, 128, 88, 0.4);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 30px -14px rgba(0, 0, 0, 0.55);
+  --shadow-float: 0 10px 24px -6px rgba(221, 128, 88, 0.4);
 
-    --color-toast-bg: #f3ecdd;
-    --color-toast-fg: #2b2318;
+  --color-toast-bg: #f3ecdd;
+  --color-toast-fg: #2b2318;
 
-    color-scheme: dark;
-  }
+  color-scheme: dark;
 }
 
 * {
