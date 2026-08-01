@@ -59,6 +59,11 @@
   font-weight: 600;
   font-size: 19px;
 }
+.wordRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
 .navCta {
   font-size: 13.5px;
   font-weight: 600;
@@ -191,6 +196,7 @@
   overflow: hidden;
   background: var(--color-card);
   aspect-ratio: 16 / 9.4;
+  container-type: inline-size;
 }
 .laptopBase {
   height: 12px;
@@ -236,6 +242,7 @@
   overflow: hidden;
   background: var(--color-card);
   aspect-ratio: 9 / 19.5;
+  container-type: inline-size;
 }
 
 @media (max-width: 640px) {
@@ -282,19 +289,12 @@
 .miniAppPhone .miniHero {
   margin-bottom: 9px;
 }
-.miniAppPhone .miniHeadline {
-  font-size: 11.5px;
-}
 .miniAppPhone .miniList {
   gap: 7px;
   padding: 7px 0;
 }
-.miniAppPhone .miniRowText {
-  font-size: 8px;
-}
 .miniAppPhone .miniCta {
   margin-top: 10px;
-  font-size: 8px;
   padding: 7px 0;
 }
 .miniScroll::-webkit-scrollbar {
@@ -310,14 +310,19 @@
   justify-content: space-between;
   margin-bottom: 12px;
 }
+.miniWordRow {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
 .miniWord {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 11px;
+  font-size: clamp(9px, 4.6cqw, 12px);
   color: var(--color-ink);
 }
 .miniPill {
-  font-size: 8px;
+  font-size: clamp(6.5px, 3.4cqw, 8.5px);
   font-weight: 600;
   color: var(--color-tag-progres);
   background: var(--color-tag-progres-bg);
@@ -329,7 +334,7 @@
 }
 .miniEyebrow {
   display: block;
-  font-size: 7.5px;
+  font-size: clamp(6px, 3.1cqw, 8px);
   font-weight: 600;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -338,7 +343,7 @@
 }
 .miniHeadline {
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: clamp(10.5px, 5.4cqw, 14px);
   font-weight: 500;
   line-height: 1.25;
   margin: 0;
@@ -364,7 +369,7 @@
 .miniWhen {
   flex: none;
   width: 22px;
-  font-size: 7px;
+  font-size: clamp(6px, 2.9cqw, 7.5px);
   color: var(--color-ink-faint);
 }
 .miniTag {
@@ -382,7 +387,7 @@
 .miniRowText {
   flex: 1;
   min-width: 0;
-  font-size: 8.5px;
+  font-size: clamp(7.5px, 3.6cqw, 9.5px);
   line-height: 1.4;
   color: var(--color-ink-soft);
   white-space: nowrap;
@@ -393,13 +398,16 @@
   display: block;
   margin-top: 14px;
   text-align: center;
-  font-size: 8.5px;
+  font-size: clamp(7.5px, 3.6cqw, 9.5px);
   font-weight: 600;
   text-decoration: none;
   color: var(--color-card);
   background: var(--color-accent);
   border-radius: 999px;
-  padding: 8px 0;
+  padding: 8px 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
@@ -701,5 +709,71 @@
   .reveal {
     opacity: 1 !important;
     transform: none !important;
+  }
+}
+
+/* ---------- Splash (auto entry animation) ---------- */
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: var(--color-paper);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.splashOut {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.splashMark {
+  animation: splash-mark 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.splashWord {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 0.01em;
+  color: var(--color-ink);
+  opacity: 0;
+  animation: splash-word 0.5s ease 0.15s both;
+}
+
+@keyframes splash-mark {
+  from {
+    opacity: 0;
+    transform: scale(0.82);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes splash-word {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .splash {
+    animation: none;
+  }
+  .splashMark,
+  .splashWord {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
 }

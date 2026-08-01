@@ -9,7 +9,7 @@
    ---------------------------------------------------------------- */
 :root {
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
-  --font-body: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
 
   --color-paper: #f7f1e6;

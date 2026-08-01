@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Public_Sans, IBM_Plex_Mono } from "next/font/google";
+import { Fraunces, Lato, IBM_Plex_Mono } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -10,10 +10,10 @@ const fraunces = Fraunces({
   style: ["normal"],
 });
 
-const publicSans = Public_Sans({
-  variable: "--font-public-sans",
+const lato = Lato({
+  variable: "--font-lato",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "700", "900"],
 });
 
 const plexMono = IBM_Plex_Mono({
@@ -23,8 +23,8 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Notula — Catatan Proyek dari WhatsApp",
-  description: "Notula menyusun tangkapan WhatsApp jadi catatan proyek arsitektur yang rapi dengan sendirinya.",
+  title: "NotulArs — Catatan Proyek dari WhatsApp",
+  description: "NotulArs menyusun tangkapan WhatsApp jadi catatan proyek arsitektur yang rapi dengan sendirinya.",
 };
 
 export const viewport: Viewport = {
@@ -39,7 +39,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="id" className={`${fraunces.variable} ${publicSans.variable} ${plexMono.variable} h-full antialiased`}>
+    <html lang="id" className={`${fraunces.variable} ${lato.variable} ${plexMono.variable} h-full antialiased`}>
       <body className="h-full">
         <Providers>{children}</Providers>
       </body>

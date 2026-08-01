@@ -41,7 +41,7 @@ export default function ProjectsPage() {
     <div className="page-transition flex h-dvh flex-col overflow-hidden" style={{ background: "var(--color-paper)" }}>
       <div className="flex items-center justify-between px-5 pt-6 pb-2">
         <span className="font-display text-[22px] font-semibold" style={{ color: "var(--color-ink)" }}>
-          Notula
+          NotulArs
         </span>
         <button
           onClick={() => signOut({ callbackUrl: "/" })}

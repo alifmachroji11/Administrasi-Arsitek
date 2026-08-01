@@ -84,7 +84,7 @@ export default function OnboardingPage() {
     <div className="mx-auto flex min-h-svh max-w-[480px] flex-col px-6 pt-6 pb-8" style={{ background: "var(--color-paper)" }}>
       <div className="mb-8 flex items-center justify-between">
         <span className="font-display text-[16px] font-semibold" style={{ color: "var(--color-ink)" }}>
-          Notula
+          NotulArs
         </span>
         <div className="flex gap-1.5">
           <span className="h-[5px] w-5 rounded-full" style={{ background: stepIndex === 1 ? "var(--color-accent)" : "var(--color-stone)" }} />
@@ -98,7 +98,7 @@ export default function OnboardingPage() {
             Hubungkan Nomor WhatsApp
           </h1>
           <p className="mb-7 text-[15px] leading-relaxed" style={{ color: "var(--color-ink-soft)" }}>
-            Simpan nomor bot Notula ini di kontak kamu. Semua yang kamu forward ke sini otomatis tersusun rapi per proyek.
+            Simpan nomor bot NotulArs ini di kontak kamu. Semua yang kamu forward ke sini otomatis tersusun rapi per proyek.
           </p>
 
           <div className="mb-5 rounded-[20px] p-6 text-center" style={{ background: "var(--color-card)", boxShadow: "var(--shadow-card)" }}>
@@ -106,7 +106,7 @@ export default function OnboardingPage() {
               {BOT_NUMBER}
             </p>
             <p className="mb-5 text-[12.5px]" style={{ color: "var(--color-ink-faint)" }}>
-              Notula Assistant
+              NotulArs Assistant
             </p>
             <button
               onClick={copyNumber}
@@ -200,7 +200,7 @@ export default function OnboardingPage() {
             Mulai Forward dari Lokasi
           </h1>
           <p className="mb-6 text-[15px] leading-relaxed" style={{ color: "var(--color-ink-soft)" }}>
-            Forward pesan ke nomor ini, atau tambahkan Notula sebagai anggota di grup WhatsApp proyek kamu.
+            Forward pesan ke nomor ini, atau tambahkan NotulArs sebagai anggota di grup WhatsApp proyek kamu.
           </p>
 
           <div className="mb-6 rounded-[20px] p-4" style={{ background: "#e5ddd0", boxShadow: "var(--shadow-card)" }}>
@@ -215,7 +215,7 @@ export default function OnboardingPage() {
                 <PhotoPlate label="Foto Lapangan" tone={0} className="h-[72px] w-40" rounded="rounded-lg" />
               </div>
               <span className="text-[10.5px]" style={{ color: "#8b8478" }}>
-                terkirim ke Notula ✓✓
+                terkirim ke NotulArs ✓✓
               </span>
             </div>
           </div>
