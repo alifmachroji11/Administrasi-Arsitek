@@ -36,8 +36,8 @@ const navButtonClass = "flex flex-col items-center gap-1 px-6 py-1 transition-tr
 export function BottomNav({ active, onProyek, onCari, onProfil }: BottomNavProps) {
   return (
     <nav
-      className="flex items-center justify-around border-t bg-[var(--color-card)] py-2.5"
-      style={{ borderColor: "var(--color-stone-line)" }}
+      className="flex flex-none items-center justify-around border-t bg-[var(--color-card)] pt-2.5"
+      style={{ borderColor: "var(--color-stone-line)", paddingBottom: "max(0.625rem, env(safe-area-inset-bottom))" }}
       aria-label="Navigasi utama"
     >
       <button onClick={onProyek} className={navButtonClass} aria-current={active === "proyek" ? "page" : undefined}>

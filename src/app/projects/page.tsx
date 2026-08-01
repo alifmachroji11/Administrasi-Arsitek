@@ -19,15 +19,25 @@ interface ProjectListItem {
   thumbLabel: string;
 }
 
+// Module-level, not component state: App Router client navigations keep this
+// JS module alive, so returning to /projects from another tab can paint the
+// last-known list immediately instead of flashing "Memuat…" while the
+// (still-issued) background refetch comes back.
+let projectsCache: ProjectListItem[] | null = null;
+
 export default function ProjectsPage() {
   const router = useRouter();
-  const [projects, setProjects] = useState<ProjectListItem[] | null>(null);
+  const [projects, setProjects] = useState<ProjectListItem[] | null>(projectsCache);
   const [showSplash, setShowSplash] = useState(false);
 
   useEffect(() => {
     fetch("/api/projects")
       .then((r) => r.json())
-      .then((d) => setProjects(d.projects ?? []));
+      .then((d) => {
+        const list: ProjectListItem[] = d.projects ?? [];
+        projectsCache = list;
+        setProjects(list);
+      });
     // Genuinely reading external state (sessionStorage) at mount.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setShowSplash(consumeEntrySplash());
