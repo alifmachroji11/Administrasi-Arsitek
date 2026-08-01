@@ -254,14 +254,30 @@
   }
 }
 
-/* Mini app replica shown inside both device screens */
+/* Mini app replica shown inside both device screens — genuinely
+   scrollable and clickable, not just a static picture. */
 .miniApp {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 14px 14px 0;
   font-family: var(--font-sans, inherit);
+}
+.miniScroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 14px 14px 16px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-stone-line) transparent;
+}
+.miniScroll::-webkit-scrollbar {
+  width: 5px;
+}
+.miniScroll::-webkit-scrollbar-thumb {
+  background: var(--color-stone-line);
+  border-radius: 999px;
 }
 .miniTop {
   display: flex;
@@ -310,20 +326,27 @@
 .miniList {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  gap: 9px;
   padding: 9px 0;
   border-top: 1px solid var(--color-stone-line);
 }
 .miniRow {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 6px;
+}
+.miniWhen {
+  flex: none;
+  width: 22px;
+  font-size: 7px;
+  color: var(--color-ink-faint);
 }
 .miniTag {
   width: 5px;
   height: 5px;
   border-radius: 999px;
   flex: none;
+  align-self: center;
 }
 .miniTagProgres {
   background: var(--color-tag-progres);
@@ -333,23 +356,30 @@
 }
 .miniRowText {
   font-size: 8.5px;
+  line-height: 1.4;
   color: var(--color-ink-soft);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .miniCta {
-  margin-top: auto;
-  margin-bottom: 12px;
+  display: block;
+  margin-top: 14px;
   text-align: center;
   font-size: 8.5px;
   font-weight: 600;
+  text-decoration: none;
   color: var(--color-card);
   background: var(--color-accent);
   border-radius: 999px;
-  padding: 7px 0;
+  padding: 8px 0;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.miniCta:hover,
+.miniCta:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px -8px color-mix(in srgb, var(--color-accent) 70%, transparent);
 }
 .miniTaskbar {
+  flex: none;
   display: flex;
   align-items: center;
   justify-content: space-between;
