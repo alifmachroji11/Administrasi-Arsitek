@@ -6,7 +6,6 @@ import { signOut } from "next-auth/react";
 import { BottomNav } from "@/components/BottomNav";
 import { ProjectCard } from "@/components/ProjectCard";
 import { EmptyState } from "@/screens/EmptyState";
-import { navigateWithTransition } from "@/lib/viewTransition";
 import { Splash } from "@/components/Splash";
 import { consumeEntrySplash } from "@/lib/entrySplash";
 
@@ -103,9 +102,9 @@ export default function ProjectsPage() {
 
       <BottomNav
         active="proyek"
-        onProyek={() => navigateWithTransition(router, "/projects")}
-        onCari={() => navigateWithTransition(router, "/search")}
-        onProfil={() => navigateWithTransition(router, "/profil")}
+        onProyek={() => router.push("/projects")}
+        onCari={() => router.push("/search")}
+        onProfil={() => router.push("/profil")}
       />
     </div>
   );

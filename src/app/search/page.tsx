@@ -8,7 +8,6 @@ import { IngatHome } from "@/ingat/screens/IngatHome";
 import { IngatResults } from "@/ingat/screens/IngatResults";
 import { IngatSourceDetail } from "@/ingat/screens/IngatSourceDetail";
 import type { Source } from "@/ingat/lib/types";
-import { navigateWithTransition } from "@/lib/viewTransition";
 
 type SearchScreen = "home" | "results" | "detail";
 
@@ -84,7 +83,7 @@ export default function SearchPage() {
         onSubmit={() => runQuery(query)}
         onBack={() => (screen === "detail" ? setScreen("results") : goHome())}
         onGoHome={goHome}
-        onGoSettings={() => navigateWithTransition(router, "/profil")}
+        onGoSettings={() => router.push("/profil")}
       />
 
       <div className="min-h-0 flex-1 overflow-y-auto">
@@ -116,9 +115,9 @@ export default function SearchPage() {
 
       <BottomNav
         active="cari"
-        onProyek={() => navigateWithTransition(router, "/projects")}
+        onProyek={() => router.push("/projects")}
         onCari={goHome}
-        onProfil={() => navigateWithTransition(router, "/profil")}
+        onProfil={() => router.push("/profil")}
       />
     </div>
   );
