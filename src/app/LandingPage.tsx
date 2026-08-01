@@ -213,7 +213,7 @@ export function LandingPage() {
           <div className={styles.caseGrid}>
             <div className={cx(styles.caseCard, styles.reveal)}>
               <p className={styles.quote}>
-                &ldquo;Dulu tiap Minggu malam saya duduk dua jam nyusun ulang chat dari tiga proyek sekaligus. Sekarang
+                &ldquo;Dulu tiap malam Minggu saya duduk dua jam nyusun ulang chat dari tiga proyek sekaligus. Sekarang
                 saya buka NotulArs, laporannya sudah setengah jadi — saya tinggal baca ulang lima menit.&rdquo;
               </p>
               <div className={styles.casePerson}>
