@@ -60,7 +60,7 @@ export default function ProjectsPage() {
       style={{ background: "var(--color-paper)", height: "var(--app-vh, 100dvh)" }}
     >
       {showSplash && <Splash holdMs={700} onDone={() => setShowSplash(false)} />}
-      <div className="flex items-center justify-between px-5 pt-6 pb-2">
+      <div className="mx-auto flex w-full max-w-[560px] items-center justify-between px-5 pt-6 pb-2">
         <span className="font-display text-[22px] font-semibold" style={{ color: "var(--color-ink)" }}>
           NotulArs
         </span>
@@ -73,45 +73,47 @@ export default function ProjectsPage() {
         </button>
       </div>
 
-      {projects.length === 0 ? (
-        <EmptyState onConnect={() => router.push("/onboarding")} />
-      ) : (
-        <div className="min-h-0 flex-1 overflow-y-auto px-5 pt-2 pb-4">
-          <div className="flex flex-col gap-4">
-            {projects.map((p) => (
-              <ProjectCard
-                key={p.id}
-                project={{
-                  id: p.id,
-                  name: p.name,
-                  client: p.client,
-                  newCount: p.newCount,
-                  lastUpdate: p.lastUpdate,
-                  thumbTone: p.thumbTone,
-                  summary: "",
-                  captures: p.thumbLabel ? [{ id: "x", kind: "photo", tag: "Progres", daysAgo: 0, timeLabel: "", text: "", photoLabel: p.thumbLabel, photoTone: p.thumbTone }] : [],
-                }}
-                onOpen={() => router.push(`/projects/${p.id}`)}
-              />
-            ))}
+      <div className="mx-auto flex min-h-0 w-full max-w-[560px] flex-1 flex-col">
+        {projects.length === 0 ? (
+          <EmptyState onConnect={() => router.push("/onboarding")} />
+        ) : (
+          <div className="min-h-0 flex-1 overflow-y-auto px-5 pt-2 pb-4">
+            <div className="flex flex-col gap-4">
+              {projects.map((p) => (
+                <ProjectCard
+                  key={p.id}
+                  project={{
+                    id: p.id,
+                    name: p.name,
+                    client: p.client,
+                    newCount: p.newCount,
+                    lastUpdate: p.lastUpdate,
+                    thumbTone: p.thumbTone,
+                    summary: "",
+                    captures: p.thumbLabel ? [{ id: "x", kind: "photo", tag: "Progres", daysAgo: 0, timeLabel: "", text: "", photoLabel: p.thumbLabel, photoTone: p.thumbTone }] : [],
+                  }}
+                  onOpen={() => router.push(`/projects/${p.id}`)}
+                />
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      {projects.length > 0 && (
-        <div
-          className="px-5 pt-4 pb-4"
-          style={{ background: "linear-gradient(180deg, rgba(247,241,230,0), var(--color-paper) 40%)" }}
-        >
-          <button
-            onClick={() => router.push("/onboarding")}
-            className="w-full rounded-2xl px-6 py-4 text-[14.5px] font-semibold text-[#fdf6ea] transition-transform active:scale-[0.98]"
-            style={{ background: "var(--color-accent)", boxShadow: "var(--shadow-float)" }}
+        {projects.length > 0 && (
+          <div
+            className="px-5 pt-4 pb-4"
+            style={{ background: "linear-gradient(180deg, rgba(247,241,230,0), var(--color-paper) 40%)" }}
           >
-            + Hubungkan Nomor WhatsApp Baru
-          </button>
-        </div>
-      )}
+            <button
+              onClick={() => router.push("/onboarding")}
+              className="w-full rounded-2xl px-6 py-4 text-[14.5px] font-semibold text-[#fdf6ea] transition-transform active:scale-[0.98]"
+              style={{ background: "var(--color-accent)", boxShadow: "var(--shadow-float)" }}
+            >
+              + Hubungkan Nomor WhatsApp Baru
+            </button>
+          </div>
+        )}
+      </div>
 
       <BottomNav
         active="proyek"
