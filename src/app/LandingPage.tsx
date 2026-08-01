@@ -1,39 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import styles from "./landing.module.css";
 import { BrandWordmark } from "@/components/BrandLogo";
 import { ThemeToggle } from "@/components/ThemeToggle";
-
-const SPLASH_HOLD_MS = 900;
-const SPLASH_FADE_MS = 500;
-
-function SplashScreen() {
-  const [stage, setStage] = useState<"in" | "out" | "done">("in");
-
-  useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const holdMs = reduceMotion ? 150 : SPLASH_HOLD_MS;
-    const fadeMs = reduceMotion ? 0 : SPLASH_FADE_MS;
-    const outTimer = window.setTimeout(() => setStage("out"), holdMs);
-    const doneTimer = window.setTimeout(() => setStage("done"), holdMs + fadeMs);
-    return () => {
-      window.clearTimeout(outTimer);
-      window.clearTimeout(doneTimer);
-    };
-  }, []);
-
-  if (stage === "done") return null;
-
-  return (
-    <div className={cx(styles.splash, stage === "out" && styles.splashOut)} role="presentation">
-      <div className={styles.splashMark}>
-        <BrandWordmark iconSize={56} textSize={26} gap={16} animate className={styles.splashLockup} />
-      </div>
-    </div>
-  );
-}
+import { TransitionLink } from "@/components/TransitionLink";
+import { Splash } from "@/components/Splash";
 
 function cx(...classes: Array<string | false | undefined>): string {
   return classes.filter(Boolean).join(" ");
@@ -70,9 +43,9 @@ function MiniApp({ variant }: { variant: "laptop" | "phone" }) {
             </div>
           ))}
         </div>
-        <Link href="/register" className={styles.miniCta}>
+        <TransitionLink href="/register" className={styles.miniCta}>
           {variant === "phone" ? "Kirim Laporan" : "Kirim Laporan Minggu Ini"}
-        </Link>
+        </TransitionLink>
       </div>
       {variant === "laptop" && (
         <div className={styles.miniTaskbar}>
@@ -120,7 +93,7 @@ export function LandingPage() {
 
   return (
     <div ref={rootRef} className={styles.page}>
-      <SplashScreen />
+      <Splash />
       <nav ref={navRef} className={styles.top}>
         <BrandWordmark iconSize={24} textSize={19} />
         <span className={styles.navActions}>
@@ -316,9 +289,9 @@ export function LandingPage() {
             pertama tersusun dalam hitungan menit.
           </p>
           <div className={cx(styles.actions, styles.reveal)} style={{ justifyContent: "center" }}>
-            <Link className={styles.btnPrimary} href="/register">
+            <TransitionLink className={styles.btnPrimary} href="/register">
               Hubungkan Nomor WhatsApp
-            </Link>
+            </TransitionLink>
           </div>
         </div>
       </section>

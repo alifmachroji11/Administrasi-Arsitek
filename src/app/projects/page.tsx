@@ -7,6 +7,8 @@ import { BottomNav } from "@/components/BottomNav";
 import { ProjectCard } from "@/components/ProjectCard";
 import { EmptyState } from "@/screens/EmptyState";
 import { navigateWithTransition } from "@/lib/viewTransition";
+import { Splash } from "@/components/Splash";
+import { consumeEntrySplash } from "@/lib/entrySplash";
 
 interface ProjectListItem {
   id: string;
@@ -21,16 +23,21 @@ interface ProjectListItem {
 export default function ProjectsPage() {
   const router = useRouter();
   const [projects, setProjects] = useState<ProjectListItem[] | null>(null);
+  const [showSplash, setShowSplash] = useState(false);
 
   useEffect(() => {
     fetch("/api/projects")
       .then((r) => r.json())
       .then((d) => setProjects(d.projects ?? []));
+    // Genuinely reading external state (sessionStorage) at mount.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setShowSplash(consumeEntrySplash());
   }, []);
 
   if (projects === null) {
     return (
       <div className="flex h-dvh items-center justify-center" style={{ background: "var(--color-paper)" }}>
+        {showSplash && <Splash holdMs={700} onDone={() => setShowSplash(false)} />}
         <p className="text-[13.5px]" style={{ color: "var(--color-ink-faint)" }}>
           Memuat…
         </p>
@@ -40,6 +47,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="page-transition flex h-dvh flex-col overflow-hidden" style={{ background: "var(--color-paper)" }}>
+      {showSplash && <Splash holdMs={700} onDone={() => setShowSplash(false)} />}
       <div className="flex items-center justify-between px-5 pt-6 pb-2">
         <span className="font-display text-[22px] font-semibold" style={{ color: "var(--color-ink)" }}>
           NotulArs
