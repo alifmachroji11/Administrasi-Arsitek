@@ -75,7 +75,10 @@ export default function SearchPage() {
   const toggleProjectFilter = (p: string) => setProjectFilter((cur) => (cur === p ? null : p));
 
   return (
-    <div className="page-transition flex h-dvh flex-col overflow-hidden" style={{ background: "var(--color-card)" }}>
+    <div
+      className="page-transition flex flex-col overflow-hidden"
+      style={{ background: "var(--color-card)", height: "var(--app-vh, 100dvh)" }}
+    >
       <IngatHeader
         screen={screen}
         query={query}

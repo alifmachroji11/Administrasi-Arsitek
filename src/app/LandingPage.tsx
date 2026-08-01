@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import styles from "./landing.module.css";
 import { BrandWordmark } from "@/components/BrandLogo";
@@ -20,7 +20,26 @@ const MINI_ROWS: Array<{ when: string; text: string; tag: "Progres" | "Revisi" }
   { when: "Kamis", text: "Klien setuju revisi warna pagar", tag: "Revisi" },
 ];
 
+function formatClock(d: Date): string {
+  return `${String(d.getHours()).padStart(2, "0")}.${String(d.getMinutes()).padStart(2, "0")}`;
+}
+
+function useLiveClock(): string {
+  const [now, setNow] = useState<string | null>(null);
+
+  useEffect(() => {
+    // Genuinely reading the real clock — can't render this on the server.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setNow(formatClock(new Date()));
+    const id = window.setInterval(() => setNow(formatClock(new Date())), 30000);
+    return () => window.clearInterval(id);
+  }, []);
+
+  return now ?? "";
+}
+
 function MiniApp({ variant }: { variant: "laptop" | "phone" }) {
+  const clock = useLiveClock();
   return (
     <div className={cx(styles.miniApp, variant === "phone" && styles.miniAppPhone)}>
       <div className={styles.miniScroll}>
@@ -55,7 +74,7 @@ function MiniApp({ variant }: { variant: "laptop" | "phone" }) {
             <span />
             <span />
           </span>
-          <span className={cx(styles.miniTaskClock, styles.mono)}>16.05</span>
+          <span className={cx(styles.miniTaskClock, styles.mono)}>{clock}</span>
         </div>
       )}
     </div>
@@ -143,8 +162,7 @@ export function LandingPage() {
             </div>
           </div>
           <p className={styles.deviceCaption}>
-            <span className={styles.sceneDot} />
-            Pesan WhatsApp yang masuk, tersusun jadi catatan proyek — di laptop maupun di HP.
+            &ldquo;Pesan WhatsApp yang masuk, tersusun jadi catatan proyek — di laptop maupun di HP.&rdquo;
           </p>
         </div>
       </header>

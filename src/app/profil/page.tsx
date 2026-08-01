@@ -7,7 +7,10 @@ import { ProfilContent } from "./ProfilContent";
 export default function ProfilPage() {
   const router = useRouter();
   return (
-    <div className="page-transition flex h-dvh flex-col overflow-hidden" style={{ background: "var(--color-paper)" }}>
+    <div
+      className="page-transition flex flex-col overflow-hidden"
+      style={{ background: "var(--color-paper)", height: "var(--app-vh, 100dvh)" }}
+    >
       <div className="min-h-0 flex-1 overflow-y-auto">
         <ProfilContent />
       </div>
