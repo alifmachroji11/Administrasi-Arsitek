@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Lato, IBM_Plex_Mono } from "next/font/google";
+import { Fraunces, Lato, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 
@@ -14,6 +14,12 @@ const lato = Lato({
   variable: "--font-lato",
   subsets: ["latin"],
   weight: ["400", "700", "900"],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-grotesk",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 const plexMono = IBM_Plex_Mono({
@@ -39,7 +45,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="id" className={`${fraunces.variable} ${lato.variable} ${plexMono.variable} h-full antialiased`}>
+    <html
+      lang="id"
+      className={`${fraunces.variable} ${lato.variable} ${spaceGrotesk.variable} ${plexMono.variable} h-full antialiased`}
+    >
       <body className="h-full">
         <Providers>{children}</Providers>
       </body>

@@ -9,6 +9,8 @@ interface BrandLogoProps {
   tone?: BrandLogoTone;
   rounded?: boolean;
   bg?: string;
+  /** Animate the dimension-tick crossbar drawing in from its center. */
+  animate?: boolean;
   className?: string;
 }
 
@@ -17,7 +19,7 @@ interface BrandLogoProps {
  * stroke (forming an "N" silhouette), with a dimension-tick crossbar
  * referencing a floor plan/section cut — the blueprint motif.
  */
-export function BrandLogo({ size = 28, tone = "ink", rounded = false, bg, className }: BrandLogoProps) {
+export function BrandLogo({ size = 28, tone = "ink", rounded = false, bg, animate = false, className }: BrandLogoProps) {
   const legColor = tone === "onDark" ? CREAM : "var(--color-ink)";
   const accentColor = tone === "mono" ? legColor : BLUEPRINT_BLUE;
   const crossbarColor = tone === "mono" ? legColor : BLUEPRINT_BLUE_SOFT;
@@ -27,7 +29,18 @@ export function BrandLogo({ size = 28, tone = "ink", rounded = false, bg, classN
       <rect x="24" y="18" width="12" height="64" fill={legColor} />
       <rect x="64" y="18" width="12" height="64" fill={legColor} />
       <polygon points="36,18 64,18 76,82 64,82" fill={accentColor} />
-      <rect x="24" y="46" width="52" height="8" fill={crossbarColor} />
+      <rect
+        x="24"
+        y="46"
+        width="52"
+        height="8"
+        fill={crossbarColor}
+        style={
+          animate
+            ? { transformOrigin: "50px 50px", animation: "brand-tick-draw 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both" }
+            : undefined
+        }
+      />
     </svg>
   );
 
@@ -52,22 +65,36 @@ export function BrandLogo({ size = 28, tone = "ink", rounded = false, bg, classN
 }
 
 export function BrandWordmark({
-  size = 22,
-  gap = 10,
+  iconSize = 22,
+  textSize = 20,
+  gap = 9,
   tone = "ink",
-  textClassName,
+  animate = false,
   className,
 }: {
-  size?: number;
+  iconSize?: number;
+  textSize?: number | string;
   gap?: number;
   tone?: BrandLogoTone;
-  textClassName?: string;
+  animate?: boolean;
   className?: string;
 }) {
+  const textColor = tone === "onDark" ? CREAM : "var(--color-ink)";
   return (
     <span className={className} style={{ display: "inline-flex", alignItems: "center", gap }}>
-      <BrandLogo size={size} tone={tone} />
-      <span className={textClassName}>NotulArs</span>
+      <BrandLogo size={iconSize} tone={tone} animate={animate} />
+      <span
+        style={{
+          fontFamily: "var(--font-brand)",
+          fontWeight: 600,
+          fontSize: textSize,
+          lineHeight: 1,
+          letterSpacing: "-0.01em",
+          color: textColor,
+        }}
+      >
+        Notul<span style={{ color: tone === "mono" ? textColor : BLUEPRINT_BLUE }}>Ars</span>
+      </span>
     </span>
   );
 }

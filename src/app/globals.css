@@ -11,6 +11,7 @@
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
   --font-body: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
+  --font-brand: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
 
   --color-paper: #f7f1e6;
   --color-paper-dim: #f1ead9;
@@ -169,4 +170,21 @@ textarea {
 
 .page-transition {
   animation: page-in 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes brand-tick-draw {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @keyframes brand-tick-draw {
+    from {
+      transform: scaleX(1);
+    }
+  }
 }

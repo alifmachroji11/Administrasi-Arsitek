@@ -54,16 +54,6 @@
 .topScrolled {
   border-bottom-color: var(--color-stone-line);
 }
-.word {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 19px;
-}
-.wordRow {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-}
 .navCta {
   font-size: 13.5px;
   font-weight: 600;
@@ -309,17 +299,6 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: 12px;
-}
-.miniWordRow {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-}
-.miniWord {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(9px, 4.6cqw, 12px);
-  color: var(--color-ink);
 }
 .miniPill {
   font-size: clamp(6.5px, 3.4cqw, 8.5px);
@@ -684,11 +663,6 @@
   flex-wrap: wrap;
   gap: 12px;
 }
-.footerWord {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 15px;
-}
 .fine {
   font-size: 12.5px;
   color: var(--color-ink-faint);
@@ -735,14 +709,8 @@
 .splashMark {
   animation: splash-mark 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
-.splashWord {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 17px;
-  letter-spacing: 0.01em;
-  color: var(--color-ink);
-  opacity: 0;
-  animation: splash-word 0.5s ease 0.15s both;
+.splashLockup {
+  transform-origin: center;
 }
 
 @keyframes splash-mark {
@@ -755,23 +723,12 @@
     transform: scale(1);
   }
 }
-@keyframes splash-word {
-  from {
-    opacity: 0;
-    transform: translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .splash {
     animation: none;
   }
-  .splashMark,
-  .splashWord {
+  .splashMark {
     animation: none;
     opacity: 1;
     transform: none;
