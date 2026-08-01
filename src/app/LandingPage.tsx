@@ -143,7 +143,7 @@ export function LandingPage() {
           </p>
           <div className={styles.actions}>
             <Link className={styles.btnPrimary} href="#case">
-              Baca cerita Nadia
+              Baca cerita Alif
             </Link>
             <Link className={styles.btnGhost} href="#cara-kerja">
               Lihat cara kerjanya
@@ -207,7 +207,7 @@ export function LandingPage() {
         <div className={styles.wrap}>
           <div className={cx(styles.sectionHead, styles.reveal)}>
             <span className={styles.eyebrow}>Contoh nyata</span>
-            <h2>Malam Minggu yang kembali jadi milik Nadia</h2>
+            <h2>Malam Minggu yang kembali jadi milik Alif</h2>
           </div>
 
           <div className={styles.caseGrid}>
@@ -217,9 +217,9 @@ export function LandingPage() {
                 saya buka NotulArs, laporannya sudah setengah jadi — saya tinggal baca ulang lima menit.&rdquo;
               </p>
               <div className={styles.casePerson}>
-                <div className={styles.caseAvatar}>NP</div>
+                <div className={styles.caseAvatar}>AM</div>
                 <div>
-                  <div className={styles.name}>Nadia Puspita</div>
+                  <div className={styles.name}>Alif Machroji</div>
                   <div className={styles.role}>Arsitek praktik mandiri, Bandung — 3 proyek renovasi rumah tinggal berjalan</div>
                 </div>
               </div>
@@ -275,7 +275,7 @@ export function LandingPage() {
                 <div className={styles.tlItem}>
                   <div className={cx(styles.tlWhen, styles.mono)}>Kamis</div>
                   <div className={styles.tlWhat} style={{ color: "var(--color-ink-soft)" }}>
-                    Nadia buka NotulArs, semua tangkapan minggu ini sudah tersusun rapi. Laporan siap dikirim dalam lima
+                    Alif buka NotulArs, semua tangkapan minggu ini sudah tersusun rapi. Laporan siap dikirim dalam lima
                     menit.
                   </div>
                 </div>
