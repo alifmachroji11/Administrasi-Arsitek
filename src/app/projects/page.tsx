@@ -45,7 +45,7 @@ export default function ProjectsPage() {
 
   if (projects === null) {
     return (
-      <div className="flex h-dvh items-center justify-center" style={{ background: "var(--color-paper)" }}>
+      <div className="flex items-center justify-center" style={{ background: "var(--color-paper)", height: "var(--app-vh, 100dvh)" }}>
         {showSplash && <Splash holdMs={700} onDone={() => setShowSplash(false)} />}
         <p className="text-[13.5px]" style={{ color: "var(--color-ink-faint)" }}>
           Memuat…
@@ -55,7 +55,10 @@ export default function ProjectsPage() {
   }
 
   return (
-    <div className="page-transition flex h-dvh flex-col overflow-hidden" style={{ background: "var(--color-paper)" }}>
+    <div
+      className="page-transition flex flex-col overflow-hidden"
+      style={{ background: "var(--color-paper)", height: "var(--app-vh, 100dvh)" }}
+    >
       {showSplash && <Splash holdMs={700} onDone={() => setShowSplash(false)} />}
       <div className="flex items-center justify-between px-5 pt-6 pb-2">
         <span className="font-display text-[22px] font-semibold" style={{ color: "var(--color-ink)" }}>
