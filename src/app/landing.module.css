@@ -87,8 +87,6 @@
 }
 .heroTitle {
   font-family: var(--font-display);
-  font-variation-settings: "SOFT" 0, "WONK" 0;
-  font-optical-sizing: auto;
   text-wrap: balance;
   font-size: clamp(34px, 5.4vw, 58px);
   font-weight: 500;
@@ -320,7 +318,6 @@
 }
 .miniHeadline {
   font-family: var(--font-display);
-  font-variation-settings: "SOFT" 0, "WONK" 0;
   font-size: clamp(10.5px, 5.4cqw, 14px);
   font-weight: 500;
   line-height: 1.25;
@@ -360,7 +357,7 @@
   background: var(--color-tag-progres);
 }
 .miniTagRevisi {
-  background: var(--color-accent);
+  background: var(--color-tag-revisi);
 }
 .miniRowText {
   flex: 1;
@@ -427,7 +424,6 @@
 }
 .sectionHead h2 {
   font-family: var(--font-display);
-  font-variation-settings: "SOFT" 0, "WONK" 0;
   text-wrap: balance;
   font-size: clamp(26px, 3.4vw, 36px);
   font-weight: 500;
@@ -456,7 +452,6 @@
 }
 .step .stepNum {
   font-family: var(--font-display);
-  font-variation-settings: "SOFT" 0, "WONK" 0;
   font-size: 15px;
   color: var(--color-accent);
   margin-bottom: 14px;
@@ -499,7 +494,6 @@
 }
 .quote {
   font-family: var(--font-display);
-  font-variation-settings: "SOFT" 0, "WONK" 0;
   font-weight: 400;
   font-size: 21px;
   line-height: 1.45;
@@ -521,7 +515,6 @@
   align-items: center;
   justify-content: center;
   font-family: var(--font-display);
-  font-variation-settings: "SOFT" 0, "WONK" 0;
   font-weight: 600;
   font-size: 15px;
   flex: none;
@@ -598,8 +591,8 @@
   vertical-align: middle;
 }
 .tagRevisi {
-  background: var(--color-accent-soft);
-  color: var(--color-accent-soft-ink);
+  background: var(--color-tag-revisi-bg);
+  color: var(--color-tag-revisi);
 }
 .tagProgres {
   background: var(--color-tag-progres-bg);
@@ -642,7 +635,6 @@
 }
 .closing h2 {
   font-family: var(--font-display);
-  font-variation-settings: "SOFT" 0, "WONK" 0;
   text-wrap: balance;
   font-size: clamp(28px, 4vw, 42px);
   font-weight: 500;

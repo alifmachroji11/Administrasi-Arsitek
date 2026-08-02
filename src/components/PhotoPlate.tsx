@@ -32,7 +32,7 @@ export function PhotoPlate({ label, tone = 0, className = "", rounded = "rounded
             "repeating-linear-gradient(135deg, rgba(43,35,24,0.12) 0px, rgba(43,35,24,0.12) 1px, transparent 1px, transparent 10px)",
         }}
       />
-      <span className="relative m-2.5 rounded-md bg-[rgba(43,35,24,0.55)] px-2 py-1 font-mono-meta text-[10px] font-medium uppercase tracking-wider text-[#fdf6ea]">
+      <span className="relative m-2.5 rounded-md bg-[rgba(43,35,24,0.55)] px-2 py-1 font-mono-meta text-[10px] font-medium uppercase tracking-wider text-[var(--color-accent-on)]">
         {label}
       </span>
     </div>

@@ -131,7 +131,7 @@ export function LandingPage() {
           </h1>
           <p className={styles.lede}>
             Foto lapangan, voice note, revisi lisan — semuanya sudah kamu forward ke WhatsApp klien tiap hari. NotulArs
-            hanya membaca yang sudah ada, lalu merapikannya. Tidak ada aplikasi baru yang harus dipelajari tim kamu.
+            hanya membaca yang sudah ada, lalu merapikannya. Nggak ada aplikasi baru yang harus dipelajari tim kamu.
           </p>
           <div className={styles.actions}>
             <Link className={styles.btnPrimary} href="#case">
@@ -171,8 +171,8 @@ export function LandingPage() {
         <div className={styles.wrap}>
           <div className={cx(styles.sectionHead, styles.reveal)}>
             <span className={styles.eyebrow}>Cara kerjanya</span>
-            <h2>Tiga langkah, tidak lebih</h2>
-            <p>Tidak ada pelatihan tim, tidak ada aplikasi baru untuk klien atau tukang. Yang berubah cuma satu nomor tujuan forward.</p>
+            <h2>Tiga langkah, nggak lebih</h2>
+            <p>Nggak ada pelatihan tim, nggak ada aplikasi baru buat klien atau tukang. Yang berubah cuma satu nomor tujuan forward.</p>
           </div>
           <div className={styles.steps}>
             <div className={cx(styles.step, styles.reveal)}>
@@ -280,15 +280,15 @@ export function LandingPage() {
         <div className={styles.wrap}>
           <div className={cx(styles.sectionHead, styles.reveal)}>
             <span className={styles.eyebrow}>Kenapa terasa ringan</span>
-            <h2>NotulArs sengaja tidak menambah kerjaan</h2>
+            <h2>NotulArs sengaja nggak nambah kerjaan</h2>
           </div>
           <div className={cx(styles.featureRow, styles.reveal)}>
             <div className={styles.feature}>
-              <h3>Tidak pindah kanal</h3>
+              <h3>Nggak pindah kanal</h3>
               <p>Klien dan tukang tetap kirim ke WhatsApp seperti biasa. Yang berubah cuma satu nomor tujuan forward dari kamu.</p>
             </div>
             <div className={styles.feature}>
-              <h3>Tidak perlu diketik ulang</h3>
+              <h3>Nggak perlu diketik ulang</h3>
               <p>Foto, suara, dan teks yang masuk dibaca apa adanya. NotulArs menyusun, bukan mengganti cara kamu bekerja.</p>
             </div>
             <div className={styles.feature}>
@@ -303,7 +303,7 @@ export function LandingPage() {
         <div className={styles.wrap}>
           <h2 className={styles.reveal}>Coba dengan proyek yang sedang berjalan sekarang</h2>
           <p className={styles.reveal}>
-            Tidak perlu migrasi data, tidak perlu ganti kebiasaan forward. Hubungkan satu nomor, lihat tangkapan
+            Nggak perlu migrasi data, nggak perlu ganti kebiasaan forward. Hubungkan satu nomor, lihat tangkapan
             pertama tersusun dalam hitungan menit.
           </p>
           <div className={cx(styles.actions, styles.reveal)} style={{ justifyContent: "center" }}>

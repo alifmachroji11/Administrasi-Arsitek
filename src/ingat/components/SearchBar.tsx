@@ -45,7 +45,7 @@ export function SearchBar({ value, onChange, onSubmit, placeholder, size = "hero
         <button
           type="submit"
           aria-label="Cari"
-          className="flex h-9 w-9 flex-none items-center justify-center rounded-full text-[#fdf6ea]"
+          className="flex h-9 w-9 flex-none items-center justify-center rounded-full text-[var(--color-accent-on)]"
           style={{ background: "var(--color-accent)" }}
         >
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none">

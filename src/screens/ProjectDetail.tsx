@@ -103,7 +103,7 @@ export function ProjectDetail({
         </div>
         <button
           onClick={onBuildReport}
-          className="w-full rounded-2xl px-6 py-4 text-[14.5px] font-semibold text-[#fdf6ea] transition-transform active:scale-[0.98]"
+          className="w-full rounded-2xl px-6 py-4 text-[14.5px] font-semibold text-[var(--color-accent-on)] transition-transform active:scale-[0.98]"
           style={{ background: "var(--color-accent)", boxShadow: "var(--shadow-float)" }}
         >
           Buat Laporan dari Rentang Ini
@@ -120,7 +120,7 @@ function RangeButton({ label, active, onClick }: { label: string; active: boolea
       className="flex-1 rounded-xl border py-2.5 text-[12.5px] font-medium transition-colors"
       style={
         active
-          ? { background: "var(--color-accent)", color: "#fdf6ea", borderColor: "var(--color-accent)" }
+          ? { background: "var(--color-accent)", color: "var(--color-accent-on)", borderColor: "var(--color-accent)" }
           : { background: "var(--color-card)", color: "var(--color-ink-soft)", borderColor: "var(--color-stone-line)" }
       }
     >

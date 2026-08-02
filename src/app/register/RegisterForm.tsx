@@ -73,7 +73,7 @@ export function RegisterForm({ googleEnabled }: { googleEnabled: boolean }) {
             <button
               type="submit"
               disabled={loading}
-              className="mt-1.5 w-full rounded-xl py-3 text-[14.5px] font-semibold text-[#fdf6ea] transition-transform disabled:opacity-60"
+              className="mt-1.5 w-full rounded-xl py-3 text-[14.5px] font-semibold text-[var(--color-accent-on)] transition-transform disabled:opacity-60"
               style={{ background: "var(--color-accent)" }}
             >
               {loading ? "Memproses…" : "Daftar"}

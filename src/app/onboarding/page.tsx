@@ -130,7 +130,7 @@ export default function OnboardingPage() {
           <div className="flex-1" />
           <button
             onClick={() => setStage("enter-phone")}
-            className="w-full rounded-2xl py-4 text-[15px] font-semibold text-[#fdf6ea]"
+            className="w-full rounded-2xl py-4 text-[15px] font-semibold text-[var(--color-accent-on)]"
             style={{ background: "var(--color-accent)", boxShadow: "var(--shadow-float)" }}
           >
             Lanjut, Verifikasi Nomorku
@@ -159,7 +159,7 @@ export default function OnboardingPage() {
           <button
             onClick={sendOtp}
             disabled={loading || !phone}
-            className="w-full rounded-2xl py-4 text-[15px] font-semibold text-[#fdf6ea] disabled:opacity-60"
+            className="w-full rounded-2xl py-4 text-[15px] font-semibold text-[var(--color-accent-on)] disabled:opacity-60"
             style={{ background: "var(--color-accent)", boxShadow: "var(--shadow-float)" }}
           >
             {loading ? "Mengirim…" : "Kirim Kode Verifikasi"}
@@ -196,7 +196,7 @@ export default function OnboardingPage() {
           <button
             onClick={verifyOtp}
             disabled={loading || code.length < 6}
-            className="w-full rounded-2xl py-4 text-[15px] font-semibold text-[#fdf6ea] disabled:opacity-60"
+            className="w-full rounded-2xl py-4 text-[15px] font-semibold text-[var(--color-accent-on)] disabled:opacity-60"
             style={{ background: "var(--color-accent)", boxShadow: "var(--shadow-float)" }}
           >
             {loading ? "Memverifikasi…" : "Verifikasi"}
@@ -253,7 +253,7 @@ export default function OnboardingPage() {
           <button
             onClick={finish}
             disabled={loading || !projectName.trim()}
-            className="w-full rounded-2xl py-4 text-[15px] font-semibold text-[#fdf6ea] disabled:opacity-60"
+            className="w-full rounded-2xl py-4 text-[15px] font-semibold text-[var(--color-accent-on)] disabled:opacity-60"
             style={{ background: "var(--color-accent)", boxShadow: "var(--shadow-float)" }}
           >
             {loading ? "Menyimpan…" : "Selesai, Mulai Pantau"}

@@ -106,7 +106,7 @@ export default function ProjectsPage() {
           >
             <button
               onClick={() => router.push("/onboarding")}
-              className="w-full rounded-2xl px-6 py-4 text-[14.5px] font-semibold text-[#fdf6ea] transition-transform active:scale-[0.98]"
+              className="w-full rounded-2xl px-6 py-4 text-[14.5px] font-semibold text-[var(--color-accent-on)] transition-transform active:scale-[0.98]"
               style={{ background: "var(--color-accent)", boxShadow: "var(--shadow-float)" }}
             >
               + Hubungkan Nomor WhatsApp Baru

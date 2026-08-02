@@ -33,7 +33,7 @@ export function EmptyState({ onConnect }: EmptyStateProps) {
         {STEPS.map((step, i) => (
           <li key={step} className="flex items-start gap-3">
             <span
-              className="flex h-6 w-6 flex-none items-center justify-center rounded-full font-mono-meta text-[12px] font-semibold text-[#fdf6ea]"
+              className="flex h-6 w-6 flex-none items-center justify-center rounded-full font-mono-meta text-[12px] font-semibold text-[var(--color-accent-on)]"
               style={{ background: "var(--color-accent)" }}
             >
               {i + 1}
@@ -47,7 +47,7 @@ export function EmptyState({ onConnect }: EmptyStateProps) {
 
       <button
         onClick={onConnect}
-        className="w-full max-w-[280px] rounded-2xl px-6 py-4 text-[15px] font-semibold text-[#fdf6ea] transition-transform active:scale-[0.98]"
+        className="w-full max-w-[280px] rounded-2xl px-6 py-4 text-[15px] font-semibold text-[var(--color-accent-on)] transition-transform active:scale-[0.98]"
         style={{ background: "var(--color-accent)", boxShadow: "var(--shadow-float)" }}
       >
         Hubungkan Nomor WhatsApp Baru

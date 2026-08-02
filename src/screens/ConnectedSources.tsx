@@ -89,7 +89,7 @@ export function ConnectedSources() {
           {whatsappNumber !== undefined && !whatsappConnected && (
             <Link
               href="/onboarding"
-              className="flex-none rounded-full px-3.5 py-2 text-[12px] font-semibold text-[#fdf6ea]"
+              className="flex-none rounded-full px-3.5 py-2 text-[12px] font-semibold text-[var(--color-accent-on)]"
               style={{ background: "var(--color-accent)" }}
             >
               Hubungkan

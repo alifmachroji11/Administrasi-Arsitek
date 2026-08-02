@@ -1,31 +1,18 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Lato, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 import { Providers } from "./providers";
 import "./globals.css";
 
-const fraunces = Fraunces({
-  variable: "--font-fraunces",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  style: ["normal"],
-});
-
-const lato = Lato({
-  variable: "--font-lato",
-  subsets: ["latin"],
-  weight: ["400", "700", "900"],
 });
 
 const spaceGrotesk = Space_Grotesk({
   variable: "--font-grotesk",
   subsets: ["latin"],
   weight: ["500", "600", "700"],
-});
-
-const plexMono = IBM_Plex_Mono({
-  variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -37,7 +24,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   viewportFit: "cover",
-  themeColor: "#f7f1e6",
+  themeColor: "#fafafa",
 };
 
 // Applies the saved theme choice to <html> before first paint — runs
@@ -50,7 +37,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html
       lang="id"
       suppressHydrationWarning
-      className={`${fraunces.variable} ${lato.variable} ${spaceGrotesk.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_BOOTSTRAP }} />

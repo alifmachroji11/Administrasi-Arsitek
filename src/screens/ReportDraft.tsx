@@ -44,7 +44,7 @@ export function ReportDraft({
           </button>
           <button
             onClick={onShare}
-            className="rounded-xl px-4 py-2.5 text-[13px] font-semibold text-[#fdf6ea]"
+            className="rounded-xl px-4 py-2.5 text-[13px] font-semibold text-[var(--color-accent-on)]"
             style={{ background: "var(--color-accent)" }}
           >
             Bagikan ke Klien

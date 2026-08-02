@@ -2,51 +2,54 @@
 
 /* ---------------------------------------------------------------
    Notula design tokens
-   Warm ivory "field notebook" ground, single terracotta accent
-   (fired clay / genteng tanah liat), semantic tag colors kept
-   separate and muted so the accent stays singular. Shared by the
-   Ingat search layer, applied more quietly there (see src/ingat).
+   Cool ivory ground, single blue accent — matches the NotulArs
+   prototype/marketing site's palette (Space Grotesk + Inter,
+   oklch blue) so the product and its landing/login pages read as
+   one system. Semantic tag colors kept separate and muted so the
+   accent stays singular. Shared by the Ingat search layer, applied
+   more quietly there (see src/ingat).
    ---------------------------------------------------------------- */
 :root {
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
-  --font-body: var(--font-lato), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, "SF Mono", monospace;
-  --font-brand: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-body);
+  --font-brand: var(--font-display);
 
-  --color-paper: #f7f1e6;
-  --color-paper-dim: #f1ead9;
-  --color-card: #fffdf8;
-  --color-ink: #2b2318;
-  --color-ink-soft: #6b5d4c;
-  --color-ink-faint: #a89a83;
-  --color-stone: #d8cdb8;
-  --color-stone-line: rgba(43, 35, 24, 0.08);
+  --color-paper: oklch(0.985 0.003 260);
+  --color-paper-dim: oklch(0.965 0.004 260);
+  --color-card: #ffffff;
+  --color-ink: oklch(0.22 0.01 260);
+  --color-ink-soft: oklch(0.46 0.02 260);
+  --color-ink-faint: oklch(0.62 0.015 260);
+  --color-stone: oklch(0.9 0.006 260);
+  --color-stone-line: oklch(0.935 0.005 260);
 
-  --color-accent: #b2502f;
-  --color-accent-deep: #8a3b21;
-  --color-accent-soft: #efdcc8;
-  --color-accent-soft-ink: #7a3a20;
+  --color-accent: oklch(0.58 0.16 250);
+  --color-accent-deep: oklch(0.52 0.17 250);
+  --color-accent-soft: oklch(0.94 0.03 250);
+  --color-accent-soft-ink: oklch(0.52 0.17 250);
+  --color-accent-on: #ffffff;
 
-  --color-tag-progres: #5f7048;
-  --color-tag-progres-bg: #e6e9d7;
-  --color-tag-revisi: #b2502f;
-  --color-tag-revisi-bg: #efdcc8;
-  --color-tag-tindak: #93690f;
-  --color-tag-tindak-bg: #f3e4be;
-  --color-tag-material: #6b5d4c;
-  --color-tag-material-bg: #ece6d8;
-  --color-tag-klien: #45606b;
-  --color-tag-klien-bg: #dbe4e6;
+  --color-tag-progres: oklch(0.42 0.08 155);
+  --color-tag-progres-bg: oklch(0.94 0.03 155);
+  --color-tag-revisi: oklch(0.46 0.1 75);
+  --color-tag-revisi-bg: oklch(0.94 0.05 80);
+  --color-tag-tindak: oklch(0.52 0.17 250);
+  --color-tag-tindak-bg: oklch(0.94 0.03 250);
+  --color-tag-material: oklch(0.46 0.02 260);
+  --color-tag-material-bg: oklch(0.965 0.004 260);
+  --color-tag-klien: oklch(0.46 0.08 200);
+  --color-tag-klien-bg: oklch(0.94 0.03 200);
 
-  --shadow-card: 0 1px 2px rgba(43, 35, 24, 0.05), 0 10px 28px -12px rgba(43, 35, 24, 0.16);
-  --shadow-float: 0 8px 20px -4px rgba(178, 80, 47, 0.35);
+  --shadow-card: 0 1px 2px rgba(20, 25, 45, 0.05), 0 16px 40px -14px rgba(20, 25, 45, 0.18);
+  --shadow-float: 0 8px 20px -4px oklch(0.58 0.16 250 / 0.35);
 
-  --color-toast-bg: #2b2318;
-  --color-toast-fg: #fdf6ea;
+  --color-toast-bg: oklch(0.22 0.01 260);
+  --color-toast-fg: oklch(0.985 0.003 260);
 
   /* Brand mark ink — the monogram's exact spec color, kept independent of
      --color-ink so the logo's neutral stays true to the logo file rather
-     than picking up the app's warm palette. */
+     than picking up the app's palette. */
   --brand-mark-ink: oklch(0.22 0.01 260);
 
   color-scheme: light;
@@ -57,36 +60,37 @@
    dark values live under [data-theme="dark"], not a prefers-color-scheme
    media query. */
 :root[data-theme="dark"] {
-  --color-paper: #201a13;
-  --color-paper-dim: #241d15;
-  --color-card: #2a2218;
-  --color-ink: #f3ecdd;
-  --color-ink-soft: #bfb09a;
-  --color-ink-faint: #7d7160;
-  --color-stone: #423827;
-  --color-stone-line: rgba(255, 248, 232, 0.09);
+  --color-paper: oklch(0.16 0.012 260);
+  --color-paper-dim: oklch(0.25 0.014 260);
+  --color-card: oklch(0.205 0.012 260);
+  --color-ink: oklch(0.95 0.005 260);
+  --color-ink-soft: oklch(0.72 0.014 260);
+  --color-ink-faint: oklch(0.52 0.014 260);
+  --color-stone: oklch(0.32 0.015 260);
+  --color-stone-line: oklch(0.28 0.013 260);
 
-  --color-accent: #dd8058;
-  --color-accent-deep: #f0a17c;
-  --color-accent-soft: #3c2c1f;
-  --color-accent-soft-ink: #eab08c;
+  --color-accent: oklch(0.7 0.155 250);
+  --color-accent-deep: oklch(0.76 0.14 250);
+  --color-accent-soft: oklch(0.3 0.06 250);
+  --color-accent-soft-ink: oklch(0.76 0.14 250);
+  --color-accent-on: oklch(0.16 0.012 260);
 
-  --color-tag-progres: #b6c497;
-  --color-tag-progres-bg: #303524;
-  --color-tag-revisi: #dd8058;
-  --color-tag-revisi-bg: #3c2c1f;
-  --color-tag-tindak: #e2b967;
-  --color-tag-tindak-bg: #3a3121;
-  --color-tag-material: #c9bda8;
-  --color-tag-material-bg: #302a1f;
-  --color-tag-klien: #9bc0ce;
-  --color-tag-klien-bg: #212f34;
+  --color-tag-progres: oklch(0.78 0.09 155);
+  --color-tag-progres-bg: oklch(0.28 0.04 155);
+  --color-tag-revisi: oklch(0.8 0.1 80);
+  --color-tag-revisi-bg: oklch(0.3 0.05 80);
+  --color-tag-tindak: oklch(0.85 0.08 250);
+  --color-tag-tindak-bg: oklch(0.3 0.06 250);
+  --color-tag-material: oklch(0.72 0.014 260);
+  --color-tag-material-bg: oklch(0.25 0.014 260);
+  --color-tag-klien: oklch(0.78 0.09 200);
+  --color-tag-klien-bg: oklch(0.3 0.05 200);
 
-  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.3), 0 14px 30px -14px rgba(0, 0, 0, 0.55);
-  --shadow-float: 0 10px 24px -6px rgba(221, 128, 88, 0.4);
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.35), 0 16px 40px -14px rgba(0, 0, 0, 0.55);
+  --shadow-float: 0 10px 24px -6px oklch(0.7 0.155 250 / 0.4);
 
-  --color-toast-bg: #f3ecdd;
-  --color-toast-fg: #2b2318;
+  --color-toast-bg: oklch(0.95 0.005 260);
+  --color-toast-fg: oklch(0.16 0.012 260);
 
   --brand-mark-ink: #f2f1ec;
 
@@ -139,11 +143,6 @@ textarea {
 
 .font-display {
   font-family: var(--font-display);
-  font-optical-sizing: auto;
-  /* Force Fraunces' standard letterforms — its "wonk" alternate curls
-     descenders like "j" into a wave that reads as a rendering glitch
-     at heading sizes. */
-  font-variation-settings: "SOFT" 0, "WONK" 0;
   text-wrap: balance;
 }
 

@@ -131,17 +131,16 @@ npx prisma migrate dev
 
 ## Arah visual
 
-Palet krem hangat + aksen terracotta tunggal, tipografi Fraunces (display)
-+ Public Sans (body) + IBM Plex Mono (metadata), dipertahankan dari
-prototipe yang sudah dibangun dan disetujui sebelumnya di kedua app
-(Notula dan Ingat). **Catatan:** brief produk yang menyertai task ini
-menyebut arah visual berbeda (sage green `#707a55`, Lora + Work Sans, dari
-draft prototipe paling awal) — arah itu sengaja tidak dipakai di build ini
-karena bertentangan dengan sistem desain yang sudah dibangun, diuji, dan
-disetujui berulang kali sepanjang sesi kerja ini (termasuk Ingat yang
-dibangun belakangan mengikuti sistem yang sama). Beri tahu kalau memang
-ingin beralih ke arah sage green — itu perubahan token warna terpusat di
-`src/app/globals.css`, tidak perlu membangun ulang struktur apa pun.
+Palet ivory sejuk + aksen biru tunggal, tipografi Space Grotesk (display &
+brand) + Inter (body), disamakan dengan prototipe landing page/dashboard
+NotulArs (`notulars` — situs statis di `notul-ars.vercel.app`) supaya
+landing page, alur login/daftar, dan aplikasi ini terasa satu sistem yang
+sama. Sebelumnya app ini pakai palet krem hangat + aksen terracotta
+(Fraunces + Lato + IBM Plex Mono) dari draft prototipe awal — diganti ke
+arah biru/Space Grotesk ini secara sengaja untuk konsistensi dengan brand
+NotulArs yang sudah dipakai di materi marketing. Token warna & font tetap
+terpusat di `src/app/globals.css` (fonts di-load di `src/app/layout.tsx`),
+jadi ganti arah lagi nanti tidak perlu membangun ulang struktur apa pun.
 
 ## Struktur
 

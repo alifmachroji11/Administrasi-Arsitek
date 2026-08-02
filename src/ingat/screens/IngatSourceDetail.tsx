@@ -68,7 +68,7 @@ export function IngatSourceDetail({ source }: IngatSourceDetailProps) {
             {source.fileType} · {source.fileSize}
           </p>
           <button
-            className="rounded-full px-5 py-2.5 text-[13.5px] font-semibold text-[#fdf6ea]"
+            className="rounded-full px-5 py-2.5 text-[13.5px] font-semibold text-[var(--color-accent-on)]"
             style={{ background: "var(--color-accent)" }}
           >
             Buka File Asli

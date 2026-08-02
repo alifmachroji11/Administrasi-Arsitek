@@ -63,7 +63,7 @@ export function ProfilContent() {
           </button>
           <button
             onClick={() => signOut({ callbackUrl: "/login" })}
-            className="rounded-xl px-4 py-2.5 text-[13.5px] font-semibold text-[#fdf6ea]"
+            className="rounded-xl px-4 py-2.5 text-[13.5px] font-semibold text-[var(--color-accent-on)]"
             style={{ background: "var(--color-accent)" }}
           >
             Masuk Ulang
