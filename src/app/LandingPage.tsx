@@ -167,7 +167,7 @@ export function LandingPage({ googleEnabled }: { googleEnabled: boolean }) {
 
       <header className={styles.hero}>
         <div className={styles.wrap}>
-          <span className={styles.eyebrow}>Untuk arsitek praktik mandiri &amp; studio kecil</span>
+          <span className={styles.eyebrow}>Untuk freelance arsitek &amp; studio kecil</span>
           <h1 className={styles.heroTitle}>
             Catatan proyekmu, <em>tersusun sendiri</em> — dari pesan yang sudah kamu kirim
           </h1>
