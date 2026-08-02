@@ -12,10 +12,10 @@ import type { Source } from "@/ingat/lib/types";
 type SearchScreen = "home" | "results" | "detail";
 
 const EXAMPLE_QUERIES = [
-  'Coba tanya: "keramik apa yang dipakai di ruang tamu?"',
-  'Coba tanya: "warna lampu yang diminta klien?"',
-  'Coba tanya: "kenapa plafon outdoor telat?"',
-  'Coba tanya: "apa revisi terakhir dari klien?"',
+  'Coba tanya: "keramik apa yang dipakai di kamar mandi Bu Sari?"',
+  'Coba tanya: "material lantai apa di Toko Pak Andi?"',
+  'Coba tanya: "warna cat ruang tunggu Klinik Medika apa?"',
+  'Coba tanya: "ukuran jendela kamar tidur Rumah Bu Sari?"',
 ];
 
 export default function SearchPage() {

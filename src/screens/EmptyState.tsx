@@ -5,9 +5,13 @@ interface EmptyStateProps {
 }
 
 const STEPS = [
-  "Hubungkan nomor WhatsApp bot NotulArs",
-  "Forward foto, voice note, atau catatan per proyek",
-  "Lihat semuanya tersusun rapi di sini",
+  <>
+    Simpan <b>nomor WhatsApp NotulArs</b> ke kontakmu.
+  </>,
+  <>Forward foto, voice note, atau chat dari proyek pertamamu.</>,
+  <>
+    NotulArs otomatis merapikannya di sini — <b>tanpa input manual</b>.
+  </>,
 ];
 
 export function EmptyState({ onConnect }: EmptyStateProps) {
@@ -23,15 +27,15 @@ export function EmptyState({ onConnect }: EmptyStateProps) {
       </svg>
 
       <h2 className="font-display text-[21px] font-semibold" style={{ color: "var(--color-ink)" }}>
-        Belum ada proyek
+        Belum ada proyek di sini
       </h2>
       <p className="mx-auto mt-2 mb-8 max-w-[280px] text-[14px] leading-relaxed" style={{ color: "var(--color-ink-soft)" }}>
-        Hubungkan nomor WhatsApp, lalu forward apa saja dari lokasi — NotulArs yang merapikan.
+        NotulArs akan menyusun semua tangkapan lapanganmu secara otomatis, begitu proyek pertama terhubung.
       </p>
 
       <ol className="mb-8 flex w-full max-w-[280px] flex-col gap-4 text-left">
         {STEPS.map((step, i) => (
-          <li key={step} className="flex items-start gap-3">
+          <li key={i} className="flex items-start gap-3">
             <span
               className="flex h-6 w-6 flex-none items-center justify-center rounded-full font-mono-meta text-[12px] font-semibold text-[var(--color-accent-on)]"
               style={{ background: "var(--color-accent)" }}
@@ -50,7 +54,7 @@ export function EmptyState({ onConnect }: EmptyStateProps) {
         className="w-full max-w-[280px] rounded-2xl px-6 py-4 text-[15px] font-semibold text-[var(--color-accent-on)] transition-transform active:scale-[0.98]"
         style={{ background: "var(--color-accent)", boxShadow: "var(--shadow-float)" }}
       >
-        Hubungkan Nomor WhatsApp Baru
+        Hubungkan Nomor WhatsApp
       </button>
     </div>
   );

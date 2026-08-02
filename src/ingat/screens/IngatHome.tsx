@@ -29,9 +29,12 @@ export function IngatHome({
     <div className="mx-auto flex w-full max-w-[560px] flex-1 flex-col px-6 pt-10 pb-8">
       <div className="mb-1.5 flex-1" />
 
-      <h1 className="font-display mb-7 text-center text-[26px] font-semibold" style={{ color: "var(--color-ink)" }}>
+      <h1 className="font-display mb-3 text-center text-[26px] font-semibold" style={{ color: "var(--color-ink)" }}>
         Tanya apa saja tentang proyekmu
       </h1>
+      <p className="mb-7 text-center text-[14.5px] leading-relaxed" style={{ color: "var(--color-ink-soft)" }}>
+        NotulArs mencari lewat WhatsApp, Google Drive, dan galeri foto sekaligus — lengkap dengan rujukan ke sumber aslinya.
+      </p>
 
       <SearchBar value={query} onChange={onQueryChange} onSubmit={onSubmit} placeholder={placeholder} size="hero" autoFocus />
 

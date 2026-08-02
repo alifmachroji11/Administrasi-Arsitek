@@ -48,7 +48,7 @@ export function ProfilContent() {
     return (
       <div className="mx-auto flex w-full max-w-[560px] flex-col items-center px-5 py-16 text-center">
         <p className="mb-1.5 text-[15px] font-semibold" style={{ color: "var(--color-ink)" }}>
-          Tidak bisa memuat profil
+          Nggak bisa memuat profil
         </p>
         <p className="mb-6 max-w-[280px] text-[13.5px] leading-relaxed" style={{ color: "var(--color-ink-faint)" }}>
           Sesi kamu mungkin sudah tidak berlaku. Coba lagi, atau masuk ulang.

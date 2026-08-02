@@ -178,9 +178,9 @@ class MockRepository implements Repository {
 function seed(repo: MockRepository) {
   const user: User = {
     id: "user_demo",
-    email: "demo@notula.app",
+    email: "alifmachroji11@gmail.com",
     passwordHash: null,
-    name: "Arsitek Demo",
+    name: "Alif Machroji",
     whatsappVerifiedNumber: null,
     createdAt: new Date().toISOString(),
   };
@@ -195,37 +195,41 @@ function seed(repo: MockRepository) {
     captures: Array<Omit<Capture, "id" | "projectId" | "createdAt" | "seenAt"> & { daysAgo: number }>;
   }> = [
     {
-      name: "Renovasi Rumah Bu Widya",
-      client: "Widya Kartika",
+      name: "Rumah Bu Sari",
+      client: "Bu Sari Wijaya",
       summary:
-        "Minggu ini progres berjalan baik: pemasangan keramik ruang tamu sudah 70% dan rangka plafon kamar utama rampung. Ada satu permintaan revisi dari klien soal posisi stop kontak, serta konfirmasi warna nat keramik yang masih menunggu jawaban.",
+        "Minggu ini progres berjalan baik: pemasangan keramik kamar mandi utama sudah 70% dan pengecoran lantai 2 rampung. Ada satu permintaan revisi dari klien soal posisi stop kontak di dapur, serta warna cat ruang tamu yang sudah dikonfirmasi ganti ke gading hangat.",
       captures: [
-        { kind: "photo", tag: "Progres", daysAgo: 0, mediaLabel: "Ruang Tamu", mediaTone: 1, mediaUrl: null, text: "Keramik lantai ruang tamu terpasang sekitar 70%, motif sesuai RAB.", source: "dm", waMessageId: "wamid.a1" },
-        { kind: "voice", tag: "Perlu Tindak Lanjut", daysAgo: 1, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "Pak, tukang keramiknya nanya, nat keramiknya warna abu-abu tua apa senada aja? Stok yang senada tinggal dikit.", source: "dm", waMessageId: "wamid.a2" },
-        { kind: "text", tag: "Revisi", daysAgo: 1, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "Klien minta posisi stop kontak di kamar utama digeser 30 cm ke kiri dari gambar awal.", source: "group", waMessageId: "wamid.a3" },
-        { kind: "photo", tag: "Progres", daysAgo: 3, mediaLabel: "Kamar Utama", mediaTone: 2, mediaUrl: null, text: "Rangka plafon kamar utama selesai dipasang, siap lanjut ke gypsum.", source: "dm", waMessageId: "wamid.a4" },
-        { kind: "photo", tag: "Material", daysAgo: 4, mediaLabel: "Dinding Pagar", mediaTone: 3, mediaUrl: null, text: "Sample warna cat eksterior sudah dites di dinding pagar. Klien condong ke opsi B, krem hangat.", source: "dm", waMessageId: "wamid.a5" },
+        { kind: "photo", tag: "Progres", daysAgo: 0, mediaLabel: "Kamar Mandi Utama", mediaTone: 1, mediaUrl: null, text: "Pemasangan keramik kamar mandi utama — Roman Griya 30x60 abu muda, sudah 70% selesai.", source: "dm", waMessageId: "wamid.a1" },
+        { kind: "voice", tag: "Perlu Tindak Lanjut", daysAgo: 0, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "Bu, untuk posisi stop kontak di dapur ternyata kepentok kabinet gantung. Perlu digeser 15 cm ke kiri, mohon konfirmasi sebelum tukang lanjut pasang.", source: "dm", waMessageId: "wamid.a2" },
+        { kind: "text", tag: "Revisi", daysAgo: 1, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "Klien minta warna cat ruang tamu diganti dari abu ke warna gading hangat. Sudah dikonfirmasi ke tukang cat, mulai Senin.", source: "group", waMessageId: "wamid.a3" },
+        { kind: "photo", tag: "Progres", daysAgo: 1, mediaLabel: "Lantai 2", mediaTone: 2, mediaUrl: null, text: "Pengecoran lantai 2 selesai, curing 7 hari sebelum lanjut pasang keramik.", source: "dm", waMessageId: "wamid.a4" },
+        { kind: "voice", tag: "Progres", daysAgo: 3, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "Update pondasi sudah selesai semua, sekarang masuk tahap pasang bata di lantai 1, insya Allah 2 minggu selesai.", source: "dm", waMessageId: "wamid.a5" },
+        { kind: "photo", tag: "Revisi", daysAgo: 5, mediaLabel: "Kamar Tidur Utama", mediaTone: 3, mediaUrl: null, text: "Posisi jendela kamar tidur utama digeser 20 cm sesuai revisi gambar terakhir.", source: "dm", waMessageId: "wamid.a6" },
+        { kind: "text", tag: "Perlu Tindak Lanjut", daysAgo: 7, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "Perlu tukang listrik tambahan — yang sekarang kewalahan kejar target minggu ini.", source: "group", waMessageId: "wamid.a7" },
       ],
     },
     {
-      name: "Fit-Out Kopi Ranting",
-      client: "Studio Ranting Coffee",
+      name: "Toko Pak Andi",
+      client: "Pak Andi Kurniawan",
       summary:
-        "Fit-out area kasir maju pesat — rak kayu sudah terpasang dan tinggal finishing. Ada revisi kecil soal suhu warna lampu gantung, dan progres plafon outdoor sedikit tertunda menunggu material.",
+        "Rak display etalase depan sudah terpasang, tinggal finishing cat besi. Lantai granit area depan sudah terpasang menyeluruh. Ada revisi kecil soal titik lampu sorot di kasir, dan talang air belakang masih perlu dicek sebelum plafon dipasang.",
       captures: [
-        { kind: "photo", tag: "Progres", daysAgo: 0, mediaLabel: "Area Kasir", mediaTone: 3, mediaUrl: null, text: "Rak kayu dinding kasir selesai dipasang, tinggal finishing minyak kayu.", source: "group", waMessageId: "wamid.b1" },
-        { kind: "text", tag: "Revisi", daysAgo: 1, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "Klien minta warna lampu gantung diganti ke warna kuning hangat (2700K).", source: "group", waMessageId: "wamid.b2" },
-        { kind: "voice", tag: "Perlu Tindak Lanjut", daysAgo: 2, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "Plafon graniti buat area outdoor jadi nunggu barangnya, kira-kira telat 3 hari dari jadwal.", source: "group", waMessageId: "wamid.b3" },
+        { kind: "photo", tag: "Progres", daysAgo: 1, mediaLabel: "Etalase Depan", mediaTone: 3, mediaUrl: null, text: "Rak display etalase depan sudah terpasang, tinggal finishing cat besi.", source: "group", waMessageId: "wamid.b1" },
+        { kind: "text", tag: "Revisi", daysAgo: 1, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "Pak Andi minta tambah 1 titik lampu sorot di area kasir.", source: "group", waMessageId: "wamid.b2" },
+        { kind: "voice", tag: "Progres", daysAgo: 3, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "Lantai granit tile 60x60 warna abu tua sudah terpasang semua di area depan toko.", source: "group", waMessageId: "wamid.b3" },
+        { kind: "photo", tag: "Perlu Tindak Lanjut", daysAgo: 7, mediaLabel: "Talang Belakang", mediaTone: 2, mediaUrl: null, text: "Talang air belakang toko masih rembes, perlu dicek tukang sebelum plafon dipasang.", source: "dm", waMessageId: "wamid.b4" },
       ],
     },
     {
-      name: "Kantor Sewa Anara Studio",
-      client: "Anara Design Co.",
+      name: "Klinik Medika",
+      client: "dr. Ratna Puspita",
       summary:
-        "Pekerjaan partisi ruang meeting sudah selesai dan siap dicat. Instalasi kabel data tertunda menunggu konfirmasi titik akses dari tim IT klien.",
+        "Pengecatan dinding ruang tunggu selesai, warna hijau sage sesuai brief awal. Partisi kaca ruang periksa 1 dan 2 sudah terpasang. Ada revisi plafon ruang tunggu — klien minta gypsum motif kayu, bukan polos putih seperti gambar awal.",
       captures: [
-        { kind: "photo", tag: "Progres", daysAgo: 1, mediaLabel: "Ruang Meeting", mediaTone: 2, mediaUrl: null, text: "Partisi gypsum ruang meeting selesai dipasang, siap masuk tahap pengecatan.", source: "dm", waMessageId: "wamid.c1" },
-        { kind: "voice", tag: "Perlu Tindak Lanjut", daysAgo: 2, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "Titik kabel data belum dikonfirmasi tim IT klien, mohon ditanyakan supaya jalur instalasi tidak bongkar ulang.", source: "dm", waMessageId: "wamid.c2" },
+        { kind: "text", tag: "Progres", daysAgo: 4, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "Pengecatan dinding ruang tunggu selesai, warna hijau sage sesuai brief awal.", source: "dm", waMessageId: "wamid.c1" },
+        { kind: "photo", tag: "Progres", daysAgo: 7, mediaLabel: "Ruang Periksa", mediaTone: 2, mediaUrl: null, text: "Partisi kaca ruang periksa 1 dan 2 sudah terpasang.", source: "dm", waMessageId: "wamid.c2" },
+        { kind: "voice", tag: "Revisi", daysAgo: 7, mediaLabel: null, mediaTone: null, mediaUrl: null, text: "dr. Ratna minta plafon ruang tunggu pakai gypsum motif kayu, bukan polos putih seperti gambar awal.", source: "dm", waMessageId: "wamid.c3" },
       ],
     },
   ];

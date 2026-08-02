@@ -81,7 +81,7 @@ export function ReportDraft({
 
         {items.length === 0 ? (
           <p className="text-[13px]" style={{ color: "var(--color-ink-faint)" }}>
-            Tidak ada foto pada rentang ini.
+            Nggak ada foto pada rentang ini.
           </p>
         ) : (
           <div className="flex flex-col gap-6">
